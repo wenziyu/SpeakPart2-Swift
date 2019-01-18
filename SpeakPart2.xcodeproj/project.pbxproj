@@ -18,6 +18,7 @@
 		4570AB7621F1BD74004A4FDE /* PickTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4570AB7521F1BD74004A4FDE /* PickTableViewController.swift */; };
 		4570AB7821F1BE14004A4FDE /* Utl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4570AB7721F1BE14004A4FDE /* Utl.swift */; };
 		4570AB7A21F1BE77004A4FDE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4570AB7921F1BE77004A4FDE /* Reachability.swift */; };
+		4570AB7F21F1C317004A4FDE /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4570AB7E21F1C317004A4FDE /* TabBarVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		4570AB7521F1BD74004A4FDE /* PickTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickTableViewController.swift; sourceTree = "<group>"; };
 		4570AB7721F1BE14004A4FDE /* Utl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utl.swift; sourceTree = "<group>"; };
 		4570AB7921F1BE77004A4FDE /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		4570AB7E21F1C317004A4FDE /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,20 +68,45 @@
 		4570AB5B21F1B906004A4FDE /* SpeakPart2 */ = {
 			isa = PBXGroup;
 			children = (
+				4570AB7D21F1C2AD004A4FDE /* Resource */,
+				4570AB7C21F1C29D004A4FDE /* VC */,
+				4570AB7B21F1C28E004A4FDE /* Model */,
 				4570AB5C21F1B906004A4FDE /* AppDelegate.swift */,
-				4570AB5E21F1B906004A4FDE /* ViewController.swift */,
 				4570AB6021F1B906004A4FDE /* Main.storyboard */,
 				4570AB6621F1B907004A4FDE /* Assets.xcassets */,
 				4570AB6821F1B907004A4FDE /* LaunchScreen.storyboard */,
 				4570AB6B21F1B907004A4FDE /* Info.plist */,
 				4570AB7121F1BA9A004A4FDE /* SpeakingTopic.plist */,
 				4570AB6321F1B906004A4FDE /* SpeakPart2.xcdatamodeld */,
+			);
+			path = SpeakPart2;
+			sourceTree = "<group>";
+		};
+		4570AB7B21F1C28E004A4FDE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4570AB7C21F1C29D004A4FDE /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				4570AB5E21F1B906004A4FDE /* ViewController.swift */,
 				4570AB7321F1BD65004A4FDE /* TestVC.swift */,
 				4570AB7521F1BD74004A4FDE /* PickTableViewController.swift */,
+				4570AB7E21F1C317004A4FDE /* TabBarVC.swift */,
+			);
+			name = VC;
+			sourceTree = "<group>";
+		};
+		4570AB7D21F1C2AD004A4FDE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
 				4570AB7721F1BE14004A4FDE /* Utl.swift */,
 				4570AB7921F1BE77004A4FDE /* Reachability.swift */,
 			);
-			path = SpeakPart2;
+			name = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +187,7 @@
 				4570AB5F21F1B906004A4FDE /* ViewController.swift in Sources */,
 				4570AB7621F1BD74004A4FDE /* PickTableViewController.swift in Sources */,
 				4570AB5D21F1B906004A4FDE /* AppDelegate.swift in Sources */,
+				4570AB7F21F1C317004A4FDE /* TabBarVC.swift in Sources */,
 				4570AB6521F1B906004A4FDE /* SpeakPart2.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

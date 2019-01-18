@@ -25,17 +25,18 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func pressedRandomButton(_ sender: Any) {
+    @IBAction func pressedRandomButton(_ sender: UIButton) {
         let random = Int(arc4random()) % questionList.count
         let randomTopic = questionList[random]
         let randomques = Int(arc4random()) % randomTopic.count
         let str = "Question_\(randomques + 1)"
-        let qiz = randomTopic[str] as? [AnyHashable : Any]
-
+        
         let testVC = Utl.getViewControllerWithStoryboard("Main", identifier: "TestVC") as? TestVC
-//        testVC?.quesDic = qiz
-        testVC?.hidesBottomBarWhenPushed = true
         if let testVC = testVC {
+            if let qiz = randomTopic[str] as? [String : String] {
+                testVC.quesDic = qiz
+            }
+            testVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(testVC, animated: true)
         }
     }
@@ -43,6 +44,7 @@ class ViewController: UIViewController {
     @IBAction func pressedPickUPButton(_ sender: Any) {
         let add = Utl.getViewControllerWithStoryboard("Main", identifier: "PickTableViewController") as? PickTableViewController
         if let add = add {
+            add.questionList = questionList
             navigationController?.pushViewController(add, animated: true)
         }
     }
