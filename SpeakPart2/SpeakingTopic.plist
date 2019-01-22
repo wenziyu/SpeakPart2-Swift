@@ -205,6 +205,51 @@
 		</dict>
 	</dict>
 	<dict>
+		<key>Question_22</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Holidays and travel </string>
+			<key>Question</key>
+			<string>Describe a foreign country you have never been to.</string>
+			<key>Hint</key>
+			<string>where the country is?&amp;when you will go there?&amp;why you would like to go there?&amp;and explain why this is a good country to visit.</string>
+		</dict>
+		<key>Question_21</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Holidays and travel </string>
+			<key>Question</key>
+			<string>Describe a historical place that you know about.</string>
+			<key>Hint</key>
+			<string>what the place is?&amp;where it is located?&amp;what is the historical significance of the place</string>
+		</dict>
+		<key>Question_20</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Holidays and travel </string>
+			<key>Question</key>
+			<string>Talk about a city you visited and which had impressed you.</string>
+			<key>Hint</key>
+			<string>where it is situated and why you visited it?&amp;what you did there?&amp;what were the attractive part of this city?&amp;and explain why this city impressed you so much.</string>
+		</dict>
+		<key>Question_19</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Holidays and travel </string>
+			<key>Question</key>
+			<string>Describe your holidays.</string>
+			<key>Hint</key>
+			<string>where you go for the holidays?&amp;how long they last?&amp;who you go with?&amp;and talk about any interesting thing happened during your holidays.</string>
+		</dict>
+		<key>Question_18</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Holidays and travel </string>
+			<key>Question</key>
+			<string>Talk about an unusual food you have eaten abroad.</string>
+			<key>Hint</key>
+			<string>Where was it and what was the food?&amp;Did you like or dislike that food? Why?&amp;Why did you decide to try it?</string>
+		</dict>
 		<key>Question_17</key>
 		<dict>
 			<key>QusTopic</key>
@@ -361,6 +406,15 @@ and explain why it was enjoyable.</string>
 		</dict>
 	</dict>
 	<dict>
+		<key>Question_12</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Festivals and celebrations </string>
+			<key>Question</key>
+			<string>Describe an important event in your life.</string>
+			<key>Hint</key>
+			<string>what is it?&amp;how old you were then?&amp;what happened?</string>
+		</dict>
 		<key>Question_11</key>
 		<dict>
 			<key>QusTopic</key>
@@ -462,6 +516,15 @@ and explain why it was enjoyable.</string>
 		</dict>
 	</dict>
 	<dict>
+		<key>Question_12</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>About Your Hometown </string>
+			<key>Question</key>
+			<string>Talk about a well-known businessman/woman in your country.</string>
+			<key>Hint</key>
+			<string>who is the person?&amp;how you know this person?&amp;how she/he became successful?&amp;and explain why you consider him/her as a successful business person.</string>
+		</dict>
 		<key>Question_11</key>
 		<dict>
 			<key>QusTopic</key>
@@ -563,6 +626,33 @@ and explain why it was enjoyable.</string>
 		</dict>
 	</dict>
 	<dict>
+		<key>Question_12</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Home and accommodation</string>
+			<key>Question</key>
+			<string>Describe a shop near where you live that you sometimes use.</string>
+			<key>Hint</key>
+			<string>what sorts of product or service it sells?&amp;what the shop looks like?&amp;where it is located?&amp;and explain why you use this shop.</string>
+		</dict>
+		<key>Question_11</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Home and accommodation</string>
+			<key>Question</key>
+			<string>Talk about an equipment of your household.</string>
+			<key>Hint</key>
+			<string>what is it?&amp;what you do with it?&amp;will you always keep it?&amp;and explain why it is important for you.</string>
+		</dict>
+		<key>Question_10</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Home and accommodation</string>
+			<key>Question</key>
+			<string>Describe an ideal house that you would like to live in</string>
+			<key>Hint</key>
+			<string>where it would be?&amp;what type of house it would be?&amp;how you would decorate it?&amp;who you would like to live with&amp;explain why you would like to live in this kind of home.</string>
+		</dict>
 		<key>Question_9</key>
 		<dict>
 			<key>QusTopic</key>
@@ -646,6 +736,33 @@ and explain why it was enjoyable.</string>
 		</dict>
 	</dict>
 	<dict>
+		<key>Question_22</key>
+		<dict>
+			<key>Hint</key>
+			<string>what class the teacher taught you and how old you were?&amp;what subject did he teach?&amp;what the teacher’s special qualities and characteristics were?&amp;and explain why you remember this teacher.</string>
+			<key>Question</key>
+			<string>Describe a teacher from your past that you remember.</string>
+			<key>QusTopic</key>
+			<string>Work and Studies</string>
+		</dict>
+		<key>Question_21</key>
+		<dict>
+			<key>Hint</key>
+			<string>what the website was?&amp;how you found the address for this website?&amp;what the website contained?&amp;and explain why it was useful to you.</string>
+			<key>Question</key>
+			<string>Describe a useful website you have visited.</string>
+			<key>QusTopic</key>
+			<string>Work and Studies</string>
+		</dict>
+		<key>Question_20</key>
+		<dict>
+			<key>Hint</key>
+			<string>what the method is?&amp;when you started to use it?&amp;how you knew it?&amp;and explain why it is helpful?</string>
+			<key>Question</key>
+			<string>Describe a method to save money.</string>
+			<key>QusTopic</key>
+			<string>Work and Studies</string>
+		</dict>
 		<key>Question_19</key>
 		<dict>
 			<key>Hint</key>
@@ -819,6 +936,42 @@ and explain why it was enjoyable.</string>
 		</dict>
 	</dict>
 	<dict>
+		<key>Question_28</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Sports, hobbies and free time</string>
+			<key>Question</key>
+			<string>Describe a magazine that you often read.</string>
+			<key>Hint</key>
+			<string>What is it?&amp;What type of people read it?&amp;Is it popular in your country?</string>
+		</dict>
+		<key>Question_27</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Sports, hobbies and free time</string>
+			<key>Question</key>
+			<string>Describe your favourite photograph.</string>
+			<key>Hint</key>
+			<string>where the photo was taken?&amp;who took the photo?&amp;what can be seen from the photo?&amp;and explain why it is the favourite photograph to you.</string>
+		</dict>
+		<key>Question_26</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Sports, hobbies and free time</string>
+			<key>Question</key>
+			<string>Describe a river, lake or sea which you like.</string>
+			<key>Hint</key>
+			<string>what the river, lake or sea is called&amp;where it is?&amp;what the land near it is like?&amp;and explain why you like this river, lake or sea.</string>
+		</dict>
+		<key>Question_25</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Sports, hobbies and free time</string>
+			<key>Question</key>
+			<string>Describe an activity you do for your health or fitness.</string>
+			<key>Hint</key>
+			<string>what you do how often you do it?&amp;where you do it and explain?&amp;how you think this activity helps you stay healthy or fit.</string>
+		</dict>
 		<key>Question_24</key>
 		<dict>
 			<key>QusTopic</key>
@@ -1037,6 +1190,69 @@ and explain why it was enjoyable.</string>
 		</dict>
 	</dict>
 	<dict>
+		<key>Question_30</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Family, friends and pets</string>
+			<key>Question</key>
+			<string>Describe a present which you were given and that you broken occasionally.</string>
+			<key>Hint</key>
+			<string>what it is?&amp;for what occasion it was presented to you?&amp;how you broken it?&amp;what you felt when you broke it?</string>
+		</dict>
+		<key>Question_29</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Family, friends and pets</string>
+			<key>Question</key>
+			<string>Describe a time you waited for someone/something (special to happen).</string>
+			<key>Hint</key>
+			<string>what you were waiting for?&amp;how you felt?&amp;what you did while waiting?&amp;why you had waiting?</string>
+		</dict>
+		<key>Question_28</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Family, friends and pets</string>
+			<key>Question</key>
+			<string>Describe a person who accidentally became your friend.</string>
+			<key>Hint</key>
+			<string>who the person is how you met him/her?&amp;what made you two become friends?&amp;and explain how is your friendship now.</string>
+		</dict>
+		<key>Question_27</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Family, friends and pets</string>
+			<key>Question</key>
+			<string>Describe a child you know.</string>
+			<key>Hint</key>
+			<string>how old is he or she?&amp;what does s/he look like?&amp;how you two are related?&amp;and explain why do you like / dislike this child.</string>
+		</dict>
+		<key>Question_26</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Family, friends and pets</string>
+			<key>Question</key>
+			<string>Describe someone in your family who you really admire.</string>
+			<key>Hint</key>
+			<string>who he/she is?&amp;what relation you have with him /her?&amp;what you do together?&amp;and explain why do you admire this person.</string>
+		</dict>
+		<key>Question_25</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Family, friends and pets</string>
+			<key>Question</key>
+			<string>Describe a friend that you really like to spend time with.</string>
+			<key>Hint</key>
+			<string>when and how you met?&amp;how often you see this friend?&amp;what kind of personality your friend has?&amp;and explain why you like spending time with this friend.</string>
+		</dict>
+		<key>Question_24</key>
+		<dict>
+			<key>QusTopic</key>
+			<string>Family, friends and pets</string>
+			<key>Question</key>
+			<string>Describe a personal important event that you celebrated</string>
+			<key>Hint</key>
+			<string>What is it?&amp;When did it happen?&amp;Do you prefer to celebrate it with a group or people?&amp;And explain how you felt about it</string>
+		</dict>
 		<key>Question_23</key>
 		<dict>
 			<key>QusTopic</key>

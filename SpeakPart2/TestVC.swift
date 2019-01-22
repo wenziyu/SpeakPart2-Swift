@@ -32,7 +32,6 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     
     private var voiceRecorder: AVAudioRecorder?
     private var voicePlayer: AVAudioPlayer?
-    private var tabrVC: TabBarVC?
     
     // 一分鐘倒數
     private var totalSeconds: Int = 0
@@ -56,7 +55,7 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     private var isDraggingTimeSlider = false
     private var isPlaying = false
     
-    var quesDic = [String : String]()
+    var quesDic = Question()
     
     @IBAction private func sliderTouchDown(_ sender: Any) {
         // 按下的那剎那 如果正在播放 則暫停播放和時間
@@ -92,15 +91,13 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        tabrVC = TabBarVC.shared()
 
         // 題目 label
         qusLabel.numberOfLines = 0
-        qusLabel.text = quesDic["Question"]
-        let replaceHint = quesDic["Hint"]?.replacingOccurrences(of: "&", with: "\n")
+        qusLabel.text = quesDic.question
+        let replaceHint = quesDic.Hint.replacingOccurrences(of: "&", with: "\n")
         hintTextView.text = replaceHint
-        topicLabel.text = quesDic["QusTopic"]
+        topicLabel.text = quesDic.qustopic
         automaticallyAdjustsScrollViewInsets = false
         hintTextView.layoutManager.allowsNonContiguousLayout = false
         
@@ -119,7 +116,7 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
         
         fontFamily()
         
-        let image = UIImage(named: "back")
+        let image = #imageLiteral(resourceName: "back-1")
         let backButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(TestVC.navigationBackBtnTap))
         navigationItem.leftBarButtonItem = backButton
         
@@ -225,7 +222,7 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     }
     
     // MARK: - record Voice Button Pressed method
-    func recordVoiceButtonPressed(_ sender: UIButton) {
+    @IBAction func recordVoiceButtonPressed(_ sender: UIButton) {
         if voiceRecorder?.isRecording != nil {
             // 按下後停止錄音
             sender.setImage(UIImage(named: "startRecord"), for: .normal)
@@ -309,7 +306,7 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     }
     
     func prepreAudioPath() {
-        let recordFilePath = String(format: "%@/Documents/%frecord.caf", NSHomeDirectory(), time)
+        let recordFilePath = String(format: "%@/Documents/%frecord.caf", NSHomeDirectory(), Int(time))
         let recordFileURL = URL(fileURLWithPath: recordFilePath)
         voicePlayer = try? AVAudioPlayer(contentsOf: recordFileURL)
         voicePlayer?.delegate = self
@@ -347,33 +344,27 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     
     // MARK: - save test data to core data method
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        let recordFilePath = String(format: "/Documents/%frecord.caf", time)
+        let recordFilePath = String(format: "/Documents/%drecord.caf", Int(time))
         
         if save == false {
             // 如果還沒存 要存
             sender.setImage(UIImage(named: "save"), for: .normal)
             save = true
             again = false
-//            let testItem: Testdata? = tabrVC?.dataManager.createItem()
-//            testItem?.createtime = Date()
-//            testItem?.qustopic = quesDic["QusTopic"]
-//            testItem?.question = quesDic["Question"]
-//            testItem?.voice_audio = recordFilePath
-//            tabrVC?.dataManager.saveContext(withCompletion: { success in
-//                if success {
-//                    print("存了！！！！！")
-//                }
-//            })
+            var examList = ExamList()
+            examList.createtime = NSDate()
+            examList.qustopic = quesDic.qustopic
+            examList.question = quesDic.question
+            examList.voiceAudio = recordFilePath
+            if ExamDB.insert(examList) {
+                print("存了！！！！！")
+            }
         } else {
-            // 如果又反悔剛剛得存檔 則刪除
+            // 如果又反悔剛剛的存檔 則刪除
             sender.setImage(UIImage(named: "noSave"), for: .normal)
-//            let result = tabrVC?.dataManager.search(atField: "voice_audio", forKeyword: recordFilePath)
-//            tabrVC?.dataManager.deleteItem(result?.first)
-//            tabrVC?.dataManager.saveContext(withCompletion: { success in
-//                if success {
-//                    print("刪了也存了！！！！！")
-//                }
-//            })
+            if ExamDB.delete(recordFilePath) {
+                print("刪了也存了！！！！！")
+            }
             save = false
             again = true
         }
@@ -406,7 +397,7 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
         let date = Date()
         time = date.timeIntervalSince1970
         
-        let recordFilePath = String(format: "%@/Documents/%frecord.caf", NSHomeDirectory(), time)
+        let recordFilePath = String(format: "%@/Documents/%drecord.caf", NSHomeDirectory(), Int(time))
         let recordFileURL = URL(fileURLWithPath: recordFilePath)
         print("Record File Path: \(recordFilePath)")
         videoFilePath = recordFilePath
@@ -453,25 +444,19 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     func alertSetMessage(_ message: String?, settitle title: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let save = UIAlertAction(title: "Save", style: .default, handler: { action in
-            
-            let recordFilePath = String(format: "/Documents/%frecord.caf", self.time)
-//            let testItem: Testdata? = self.tabrVC?.dataManager.createItem()
-//            testItem?.createtime = Date()
-//            testItem?.qustopic = self.quesDic["QusTopic"]
-//            testItem?.question = self.quesDic["Question"]
-//
-//            testItem?.voice_audio = recordFilePath
-//            self.tabrVC?.dataManager.saveContext(withCompletion: { success in
-//                if success {
-//                    print("存了！！！！！")
-//                    self.navigationController?.popViewController(animated: true)
-//                }
-//            })
+            let recordFilePath = String(format: "/Documents/%drecord.caf", Int(self.time))
+            var examList = ExamList()
+            examList.createtime = NSDate()
+            examList.qustopic = self.quesDic.qustopic
+            examList.question = self.quesDic.question
+            examList.voiceAudio = recordFilePath
+            if ExamDB.insert(examList) {
+                print("存了！！！！！")
+            }
         })
         
         let cancel = UIAlertAction(title: "Leave", style: .cancel, handler: { action in
-            
-            let recordFilePath = String(format: "%frecord.caf", self.time)
+            let recordFilePath = String(format: "%drecord.caf", Int(self.time))
             self.deleteVoiceFile(recordFilePath)
             self.navigationController?.popViewController(animated: true)
         })

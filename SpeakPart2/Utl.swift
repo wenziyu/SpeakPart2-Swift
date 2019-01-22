@@ -23,7 +23,6 @@ class Utl {
         return viewController
     }
     
-    
     /// 取得螢幕大小
     ///
     /// (get SCREEN SIZE)
@@ -31,8 +30,6 @@ class Utl {
     ///                 4       iphone5,5s;
     ///                 4.7     iphone6,6s;
     ///                 5.5     iphone6 plus,6s plus;
-    /// - Author : 施舜傑(SHUN)
-    /// - Date : 20160406
     static func getScreenSize() -> Double {
         let screenWidth = UIScreen.main.bounds.size.width
         let screenHieght = UIScreen.main.bounds.size.height
@@ -53,49 +50,14 @@ class Utl {
             deviceScreenSize = 5.5
         }else if (screenMaxLength == 812){
             deviceScreenSize = 5.8
+        }else if (screenMaxLength == 896){
+            deviceScreenSize = 6.1
         }
+        
+        
         return deviceScreenSize
     }
-    static func setCircleSize(baseSize:CGFloat) -> CGFloat {
-        var fontSize : CGFloat = baseSize
-        let screenSize =  Utl.getScreenSize()
-        switch screenSize {
-        case 3.5:
-            fontSize = (320 / 375) * baseSize
-        case 4:
-            fontSize = (320 / 375) * baseSize
-        case 4.7:
-            fontSize = baseSize
-        case 5.5:
-            fontSize = (414 / 375) * baseSize
-        case 5.8:
-            fontSize = baseSize
-        default:
-            break
-        }
-        
-        return fontSize
-    }
-    static func setLabelFontSize() -> CGFloat {
-        var fontSize : CGFloat = 15
-        let screenSize =  getScreenSize()
-        
-        switch screenSize {
-        case 3.5:
-            fontSize = 14
-        case 4:
-            fontSize = 14
-        case 4.7:
-            fontSize = 15
-        case 5.5:
-            fontSize = 15
-        case 5.8:
-            fontSize = 15
-        default:
-            break
-        }
-        return fontSize
-    }
+    
     static func fontSize(size:CGFloat) -> CGFloat {
         var fontSize : CGFloat = size
         let screenSize =  getScreenSize()
@@ -110,6 +72,8 @@ class Utl {
         case 5.5:
             fontSize = size
         case 5.8:
+            fontSize = size
+        case 6.1:
             fontSize = size
         default:
             break

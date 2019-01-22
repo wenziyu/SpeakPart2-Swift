@@ -10,42 +10,60 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private var questionList = [[String: Any]]()
+    var questionList = [QuestionList]()
     @IBOutlet private weak var randomBtn: UIButton!
     @IBOutlet private weak var pickUpBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "IELTS Speaking Part 2"
+        self.navigationItem.title = "IELTS Speaking Part 2"
         if let fileUrl = Bundle.main.url(forResource: "SpeakingTopic", withExtension: "plist"),
             let data = try? Data(contentsOf: fileUrl) {
-            if let result = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [[String: Any]] { //
-                questionList = result!
+            if let result = try! PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [[String: Any]] {
+                for item in result {
+                    var qizTopic = ""
+                    var quesList = QuestionList()
+                    var moreQues = [Question]()
+                    for (key,value) in item{
+                        var ques = Question()
+                        ques.quesNo = key
+                        if let values = value as? [String:String]{
+                            ques.Hint = values["Hint"]
+                            ques.question = values["Question"]
+                            ques.qustopic = values["QusTopic"]
+                            qizTopic =  ques.qustopic
+                        }
+                        moreQues.append(ques)
+                    }
+                    
+                    quesList.question = moreQues
+                    quesList.qustopic = qizTopic
+                    
+                    questionList.append(quesList)
+                }
             }
         }
     }
     
     @IBAction func pressedRandomButton(_ sender: UIButton) {
         let random = Int(arc4random()) % questionList.count
-        let randomTopic = questionList[random]
+        let randomTopic = questionList[random].question!
         let randomques = Int(arc4random()) % randomTopic.count
-        let str = "Question_\(randomques + 1)"
+        
         
         let testVC = Utl.getViewControllerWithStoryboard("Main", identifier: "TestVC") as? TestVC
         if let testVC = testVC {
-            if let qiz = randomTopic[str] as? [String : String] {
-                testVC.quesDic = qiz
-            }
+            testVC.quesDic = randomTopic[randomques]
             testVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(testVC, animated: true)
         }
     }
 
     @IBAction func pressedPickUPButton(_ sender: Any) {
-        let add = Utl.getViewControllerWithStoryboard("Main", identifier: "PickTableViewController") as? PickTableViewController
-        if let add = add {
-            add.questionList = questionList
-            navigationController?.pushViewController(add, animated: true)
+        let questionVC = Utl.getViewControllerWithStoryboard("Main", identifier: "QuestionVC") as? QuestionVC
+        if let questionVC = questionVC {
+            questionVC.questionList = questionList
+            navigationController?.pushViewController(questionVC, animated: true)
         }
     }
     
@@ -56,11 +74,6 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.tintColor = UIColor.black
-        //    [[self tabBarController]tabBar].backgroundColor = [UIColor blackColor];
-        
-        
     }
-
-
 }
 

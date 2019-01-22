@@ -1,15 +1,17 @@
 //
-//  TabBarVC.swift
+//  QizDetailVC.swift
 //  SpeakPart2
 //
-//  Created by 溫芷榆 on 2019/1/18.
+//  Created by 溫芷榆 on 2019/1/22.
 //  Copyright © 2019年 com.zoe.SpeakTestHelper. All rights reserved.
 //
 
 import UIKit
 
-class TabBarVC: UIViewController {
+class QizDetailVC: UIViewController {
     
+    var qustopic = String()
+    var quesDic = [Question]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
