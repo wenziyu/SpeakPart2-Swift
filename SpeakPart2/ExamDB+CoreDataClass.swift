@@ -68,11 +68,12 @@ public class ExamDB: NSManagedObject {
         fetchRequest.returnsObjectsAsFaults = false
         
         do {
-            let results = try context.fetch(fetchRequest)
+            let results = try context.fetch(fetchRequest) as! [NSManagedObject]
             for managedObject in results {
-                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                let managedObjectData:NSManagedObject = managedObject as NSManagedObject
                 context.delete(managedObjectData)
             }
+            appDelegate.saveContext()
             return true
         } catch let error as NSError {
             print("Detele all data in \(entity) error : \(error) \(error.userInfo)")

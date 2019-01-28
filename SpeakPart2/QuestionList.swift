@@ -11,6 +11,7 @@ import Foundation
 struct QuestionList {
     
     var qustopic: String!
+    var qustCd: String!
     var question: [Question]!
     
     init() {

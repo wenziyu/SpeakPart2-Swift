@@ -1,0 +1,211 @@
+//
+//  RecordVC.swift
+//  SpeakPart2
+//
+//  Created by 溫芷榆 on 2019/1/25.
+//  Copyright © 2019年 com.zoe.SpeakTestHelper. All rights reserved.
+//
+
+import UIKit
+
+class RecordVC: UIViewController {
+    
+    
+    @IBOutlet weak var selectBtn: UIButton!
+    @IBOutlet weak var randomBtn: UIButton!
+    @IBOutlet weak var noticeView: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var examList = [ExamList]()
+    var questionList = [QuestionList]()
+    var dbExamList =  [[String : Any]]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        self.navigationItem.title = "Record"
+//        noticeView.isHidden = true
+        
+//        let dbExamList = ExamDB.getExamList()
+//        for item in dbExamList {
+//            var exam = ExamList()
+//            exam.createtime = item["createtime"] as? NSDate ?? NSDate()
+//            exam.question = item["question"] as? String ?? ""
+//            exam.qustopic = item["qustopic"] as? String ?? ""
+//            exam.voiceAudio = item["voiceAudio"] as? String ?? ""
+//
+//            self.examList.append(exam)
+//        }
+//        setTableView()
+        
+        selectBtn.addTarget(self, action: #selector(selectBtnTouchUpInside), for: .touchUpInside)
+        randomBtn.addTarget(self, action: #selector(randomBtnTouchUpInside), for: .touchUpInside)
+        
+//        tableView.isHidden = true
+//        if dbExamList.count < 1 {
+//            openPlist()
+//            noticeView.isHidden = false
+//            tableView.isHidden = true
+//        }
+//        refresh()
+    }
+    func refresh(){
+        print("我來了---------------")
+        noticeView.isHidden = true
+        dbExamList.removeAll()
+        dbExamList = ExamDB.getExamList()
+        for item in dbExamList {
+            var exam = ExamList()
+            exam.createtime = item["createtime"] as? NSDate ?? NSDate()
+            exam.question = item["question"] as? String ?? ""
+            exam.qustopic = item["qustopic"] as? String ?? ""
+            exam.voiceAudio = item["voiceAudio"] as? String ?? ""
+            
+            self.examList.append(exam)
+        }
+        setTableView()
+        
+        if dbExamList.count < 1 {
+            openPlist()
+            noticeView.isHidden = false
+            tableView.isHidden = true
+        }
+        tableView.reloadData()
+    }
+    func setTableView(){
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.bounces = true
+        tableView.allowsSelection = true
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 102
+//        let footerView = UIView()
+//        footerView.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableview.bounds.width, height: CGFloat(10))
+//        tableview.tableFooterView = footerView
+    }
+    func openPlist(){
+        if let fileUrl = Bundle.main.url(forResource: "SpeakingTopic", withExtension: "plist"),
+            let data = try? Data(contentsOf: fileUrl) {
+            if let result = try! PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [[String: Any]] {
+                for item in result {
+                    var qizTopic = ""
+                    var quesList = QuestionList()
+                    var moreQues = [Question]()
+                    for (key,value) in item{
+                        var ques = Question()
+                        ques.quesNo = key
+                        if let values = value as? [String:String]{
+                            ques.Hint = values["Hint"]
+                            ques.question = values["Question"]
+                            ques.qustopic = values["QusTopic"]
+                            qizTopic =  ques.qustopic
+                        }
+                        moreQues.append(ques)
+                    }
+                    
+                    moreQues.sort { $0.quesNo > $1.quesNo }
+                    quesList.question = moreQues
+                    quesList.qustopic = qizTopic
+                    quesList.qustCd = qustCd(qizTopic)
+                    
+                    questionList.append(quesList)
+                }
+            }
+        }
+        questionList.sort { $0.qustCd < $1.qustCd }
+    }
+    func qustCd(_ qizTopic:String)-> String {
+        var qustCd = ""
+        
+        switch qizTopic {
+        case "Language learning":
+            qustCd = "LL01"
+            break
+        case "Future plans":
+            qustCd = "FP02"
+            break
+        case "Holidays and travel ":
+            qustCd = "HAT03"
+            break
+        case "Festivals and celebrations ":
+            qustCd = "FAC04"
+            break
+        case "About Your Hometown ":
+            qustCd = "AYH05"
+            break
+        case "Home and accommodation":
+            qustCd = "HAA06"
+            break
+        case "Work and Studies":
+            qustCd = "WAS07"
+            break
+        case "Sports, hobbies and free time":
+            qustCd = "SHAFT08"
+            break
+        case "Family, friends and pets":
+            qustCd = "FFAP09"
+            break
+        default:
+            break
+        }
+        
+        return qustCd
+    }
+    @objc func selectBtnTouchUpInside(_ sender:UIButton) {
+        let questionVC = Utl.getViewControllerWithStoryboard("Main", identifier: "QuestionVC") as? QuestionVC
+        if let questionVC = questionVC {
+            questionVC.questionList = questionList
+            navigationController?.pushViewController(questionVC, animated: true)
+        }
+    }
+    
+    @objc func randomBtnTouchUpInside(_ sender:UIButton) {
+        let random = Int(arc4random()) % questionList.count
+        let randomTopic = questionList[random].question!
+        let randomques = Int(arc4random()) % randomTopic.count
+        
+        
+        let testVC = Utl.getViewControllerWithStoryboard("Main", identifier: "TestVC") as? TestVC
+        if let testVC = testVC {
+            testVC.quesDic = randomTopic[randomques]
+            testVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(testVC, animated: true)
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+        refresh()
+    }
+}
+extension RecordVC:UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recordDetailVC = Utl.getViewControllerWithStoryboard("Main", identifier: "RecordDetailVC") as? RecordDetailVC
+        if let recordDetailVC = recordDetailVC {
+            recordDetailVC.exam = examList[indexPath.row]
+            recordDetailVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(recordDetailVC, animated: true)
+        }
+    }
+}
+extension RecordVC:UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return examList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let identifier: String = "RecordCell"
+        var cell: RecordCell! = tableView.dequeueReusableCell(withIdentifier: identifier) as? RecordCell
+        if cell == nil {
+            cell = RecordCell(style:UITableViewCell.CellStyle.default, reuseIdentifier:identifier)
+        }
+        cell.selectionStyle = .none
+        if let exam = examList[safe: indexPath.row] {
+            cell.questionLabel.text = exam.question
+            cell.timeLabel.text = exam.createtime.toString("yyyy-MM-dd HH:mm")
+        }
+        
+        return cell
+    }
+    
+    
+}

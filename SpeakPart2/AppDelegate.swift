@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        window?.backgroundColor = UIColor.white
+        
         return true
     }
 
@@ -36,12 +38,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        if let nvc = self.window?.rootViewController as? UINavigationController {
+            if let vc = nvc.visibleViewController {
+                // 取得 visible ViewController
+                checkAppVersion(vc)
+            }
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+    // MARK: - private func
+    fileprivate func checkAppVersion( _ vc : UIViewController ){
+        
+        let appVersion  = Utl.isAppNeedsUpdate()
+        
+        guard let status = appVersion.isAppNeedsUpdate else {
+            return
+        }
+        
+        if status {
+            /// 顯示 App Store Version
+            let content = "A new version is available. Would you like to update it now?"
+            
+            Utl.alertMessage(vc,
+                             title: "",
+                             message: content ,
+                             leftButtonTitle: "Next time",
+                             centerButtonTitle: nil,
+                             rightButtonTitle: "Update",
+                             messageAligment: .center,
+                             closure: self.alertActionCheckAppVersion)
+            
+        }
+    }
+    /// 點擊送出
+    func alertActionCheckAppVersion(_ value:String){
+        
+        if value == "Update" {
+            ///叫出下載頁面
+            let urlString = "https://itunes.apple.com/us/app/ielts-speaking-part-2/id1279615823?l=zh&ls=1&mt=8"
+            guard let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
+            if let url = URL(string: encodedString) {
+                UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+            }
+        }
     }
 
     // MARK: - Core Data stack
@@ -108,4 +152,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}

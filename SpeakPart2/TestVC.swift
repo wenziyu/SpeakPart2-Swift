@@ -91,7 +91,7 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.title = "Test"
         // 題目 label
         qusLabel.numberOfLines = 0
         qusLabel.text = quesDic.question
@@ -136,7 +136,6 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { timer in
             self.oneMinTimerCount()
         })
-        
     }
     
     // MARK: - one minute count method
@@ -432,10 +431,15 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
         // 離開時不想存剛剛的音檔 則刪除
         let fileManager = FileManager.default
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let filePath = URL(fileURLWithPath: documentsPath).appendingPathComponent(filename!).absoluteString
+        let filePath = URL(fileURLWithPath: documentsPath).appendingPathComponent(filename!).path
         let success = fileManager.isDeletableFile(atPath: filePath)
         if success {
-            print("刪掉了喔！！！！")
+            do {
+                try fileManager.removeItem(atPath: filePath)
+                print("刪掉了喔！！！！")
+            } catch let error as NSError {
+                print("Error: \(error.domain)")
+            }
         } else {
             print("Could not delete file")
         }
@@ -468,12 +472,15 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     
     // MARK: - Disappear and shut down all timer
     override func viewWillDisappear(_ animated: Bool) {
-        // 離開前先關閉所有timer 和 audio player reocrder
-        timerInvalidate()
-        voicePlayer?.stop()
-        voicePlayer = nil
-        voiceRecorder?.stop()
-        voiceRecorder = nil
+        if isMovingFromParent {
+            // 離開前先關閉所有timer 和 audio player reocrder
+            timerInvalidate()
+            voicePlayer?.stop()
+            voicePlayer = nil
+            voiceRecorder?.stop()
+            voiceRecorder = nil
+            print("我走了--------------------------")
+        }
     }
     
     func timerInvalidate() {
@@ -488,6 +495,7 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = "Test"
+        tabBarController?.tabBar.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -496,12 +504,8 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     }
     
     func fontFamily() {
-        if let font = UIFont(name: "PingFangSC-Light", size: 15) {
-            topicLabel.font = font
-        }
-        if let font = UIFont(name: "PingFangSC-Regular", size: 22) {
-            qusLabel.font = font
-        }
-        hintTextView.font = UIFont(name: "PingFangSC-Light", size: 15)
+        topicLabel.font = UIFont.lightFont(15)
+        qusLabel.font = UIFont.regularFont(22)
+        hintTextView.font = UIFont.lightFont(17)
     }
 }

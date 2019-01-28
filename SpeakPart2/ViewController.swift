@@ -36,13 +36,55 @@ class ViewController: UIViewController {
                         moreQues.append(ques)
                     }
                     
+                    moreQues.sort { $0.quesNo > $1.quesNo }
                     quesList.question = moreQues
                     quesList.qustopic = qizTopic
+                    quesList.qustCd = qustCd(qizTopic)
                     
                     questionList.append(quesList)
                 }
             }
         }
+        questionList.sort { $0.qustCd < $1.qustCd }
+        let path = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
+        print("\(path)")
+    }
+    func qustCd(_ qizTopic:String)-> String {
+        var qustCd = ""
+        
+        switch qizTopic {
+        case "Language learning":
+            qustCd = "LL01"
+            break
+        case "Future plans":
+            qustCd = "FP02"
+            break
+        case "Holidays and travel ":
+            qustCd = "HAT03"
+            break
+        case "Festivals and celebrations ":
+            qustCd = "FAC04"
+            break
+        case "About Your Hometown ":
+            qustCd = "AYH05"
+            break
+        case "Home and accommodation":
+            qustCd = "HAA06"
+            break
+        case "Work and Studies":
+            qustCd = "WAS07"
+            break
+        case "Sports, hobbies and free time":
+            qustCd = "SHAFT08"
+            break
+        case "Family, friends and pets":
+            qustCd = "FFAP09"
+            break
+        default:
+            break
+        }
+        
+        return qustCd
     }
     
     @IBAction func pressedRandomButton(_ sender: UIButton) {

@@ -2,16 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "micro@1x.png",
+      "filename" : "noData.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "micro@2x.png",
+      "filename" : "noData@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "noData@3x.png",
       "scale" : "3x"
     }
   ],

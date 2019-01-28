@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		4547B93221F6CF4400D4C8FE /* SpeakingTopic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4547B93121F6CF4400D4C8FE /* SpeakingTopic.plist */; };
 		4547B93421F6D09800D4C8FE /* QizDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4547B93321F6D09800D4C8FE /* QizDetailVC.swift */; };
+		4547B93621F94CAE00D4C8FE /* QizDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4547B93521F94CAE00D4C8FE /* QizDetailCell.swift */; };
+		4547B93921F96FCA00D4C8FE /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4547B93721F96FCA00D4C8FE /* TopicCell.swift */; };
+		4547B93A21F96FCA00D4C8FE /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4547B93821F96FCA00D4C8FE /* TopicCell.xib */; };
+		4547B93F21FAC30000D4C8FE /* RecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4547B93E21FAC30000D4C8FE /* RecordVC.swift */; };
+		4547B94121FADDF600D4C8FE /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4547B94021FADDF600D4C8FE /* RecordCell.swift */; };
+		4547B94321FE8C4D00D4C8FE /* RecordDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4547B94221FE8C4D00D4C8FE /* RecordDetailVC.swift */; };
 		4570AB5D21F1B906004A4FDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4570AB5C21F1B906004A4FDE /* AppDelegate.swift */; };
 		4570AB5F21F1B906004A4FDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4570AB5E21F1B906004A4FDE /* ViewController.swift */; };
 		4570AB6221F1B906004A4FDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4570AB6021F1B906004A4FDE /* Main.storyboard */; };
@@ -31,6 +37,12 @@
 /* Begin PBXFileReference section */
 		4547B93121F6CF4400D4C8FE /* SpeakingTopic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SpeakingTopic.plist; sourceTree = "<group>"; };
 		4547B93321F6D09800D4C8FE /* QizDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QizDetailVC.swift; sourceTree = "<group>"; };
+		4547B93521F94CAE00D4C8FE /* QizDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QizDetailCell.swift; sourceTree = "<group>"; };
+		4547B93721F96FCA00D4C8FE /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		4547B93821F96FCA00D4C8FE /* TopicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
+		4547B93E21FAC30000D4C8FE /* RecordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordVC.swift; sourceTree = "<group>"; };
+		4547B94021FADDF600D4C8FE /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
+		4547B94221FE8C4D00D4C8FE /* RecordDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailVC.swift; sourceTree = "<group>"; };
 		4570AB5921F1B906004A4FDE /* SpeakPart2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeakPart2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4570AB5C21F1B906004A4FDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4570AB5E21F1B906004A4FDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,12 +87,41 @@
 		4547B92E21F5784100D4C8FE /* Question */ = {
 			isa = PBXGroup;
 			children = (
+				4547B93B21F96FD200D4C8FE /* Topic */,
+				4547B93C21F96FE700D4C8FE /* Question */,
+			);
+			name = Question;
+			sourceTree = "<group>";
+		};
+		4547B93B21F96FD200D4C8FE /* Topic */ = {
+			isa = PBXGroup;
+			children = (
 				4570AB9521F30965004A4FDE /* QuestionVC.swift */,
 				4570AB9721F31E46004A4FDE /* QizCell.swift */,
 				4570AB9821F31E46004A4FDE /* QizCell.xib */,
+			);
+			name = Topic;
+			sourceTree = "<group>";
+		};
+		4547B93C21F96FE700D4C8FE /* Question */ = {
+			isa = PBXGroup;
+			children = (
 				4547B93321F6D09800D4C8FE /* QizDetailVC.swift */,
+				4547B93521F94CAE00D4C8FE /* QizDetailCell.swift */,
+				4547B93721F96FCA00D4C8FE /* TopicCell.swift */,
+				4547B93821F96FCA00D4C8FE /* TopicCell.xib */,
 			);
 			name = Question;
+			sourceTree = "<group>";
+		};
+		4547B93D21FAC2E900D4C8FE /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				4547B93E21FAC30000D4C8FE /* RecordVC.swift */,
+				4547B94021FADDF600D4C8FE /* RecordCell.swift */,
+				4547B94221FE8C4D00D4C8FE /* RecordDetailVC.swift */,
+			);
+			name = Record;
 			sourceTree = "<group>";
 		};
 		4570AB5021F1B906004A4FDE = {
@@ -129,6 +170,7 @@
 		4570AB7C21F1C29D004A4FDE /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				4547B93D21FAC2E900D4C8FE /* Record */,
 				4547B92D21F5783200D4C8FE /* Home */,
 				4547B92E21F5784100D4C8FE /* Question */,
 			);
@@ -217,6 +259,7 @@
 				4570AB9A21F31E46004A4FDE /* QizCell.xib in Resources */,
 				4570AB6721F1B907004A4FDE /* Assets.xcassets in Resources */,
 				4570AB6221F1B906004A4FDE /* Main.storyboard in Resources */,
+				4547B93A21F96FCA00D4C8FE /* TopicCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,14 +274,19 @@
 				4570AB7421F1BD65004A4FDE /* TestVC.swift in Sources */,
 				4570AB9621F30965004A4FDE /* QuestionVC.swift in Sources */,
 				4570AB7821F1BE14004A4FDE /* Utl.swift in Sources */,
+				4547B94121FADDF600D4C8FE /* RecordCell.swift in Sources */,
 				4570AB5F21F1B906004A4FDE /* ViewController.swift in Sources */,
 				4570AB9C21F32481004A4FDE /* AppExtension.swift in Sources */,
 				4570AB8D21F2C430004A4FDE /* ExamDB+CoreDataClass.swift in Sources */,
 				4570AB5D21F1B906004A4FDE /* AppDelegate.swift in Sources */,
+				4547B93621F94CAE00D4C8FE /* QizDetailCell.swift in Sources */,
+				4547B93921F96FCA00D4C8FE /* TopicCell.swift in Sources */,
 				4547B93421F6D09800D4C8FE /* QizDetailVC.swift in Sources */,
+				4547B94321FE8C4D00D4C8FE /* RecordDetailVC.swift in Sources */,
 				4570AB8E21F2C430004A4FDE /* ExamDB+CoreDataProperties.swift in Sources */,
 				4570AB9921F31E46004A4FDE /* QizCell.swift in Sources */,
 				4570AB9221F2C890004A4FDE /* QuestionList.swift in Sources */,
+				4547B93F21FAC30000D4C8FE /* RecordVC.swift in Sources */,
 				4570AB6521F1B906004A4FDE /* SpeakPart2.xcdatamodeld in Sources */,
 				4570AB9021F2C488004A4FDE /* ExamList.swift in Sources */,
 			);

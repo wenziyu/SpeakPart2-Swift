@@ -20,6 +20,8 @@ class QuestionVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Topic"
+        
         setCollectionView()
         
         let image = #imageLiteral(resourceName: "back-1")
@@ -61,6 +63,9 @@ class QuestionVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
+    }
     
 }
 extension QuestionVC:UICollectionViewDelegate {
@@ -69,6 +74,8 @@ extension QuestionVC:UICollectionViewDelegate {
         let qizDetailVC = Utl.getViewControllerWithStoryboard("Main", identifier: "QizDetailVC") as? QizDetailVC
         if let qizDetailVC = qizDetailVC {
             if let question = questionList[safe: indexPath.item]?.question {
+                qizDetailVC.topicIndex = indexPath.item
+                qizDetailVC.questionList = questionList
                 qizDetailVC.quesDic = question
                 qizDetailVC.qustopic = questionList[safe: indexPath.item]?.qustopic ?? ""
             }
@@ -103,5 +110,4 @@ extension QuestionVC:UICollectionViewDataSource {
         }
         return cell
     }
-    
 }
