@@ -37,7 +37,7 @@ class RecordDetailVC: UIViewController,AVAudioPlayerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.title = "Test Record"
         let image = #imageLiteral(resourceName: "back-1")
         let backButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(RecordDetailVC.navigationBackBtnTap))
         navigationItem.leftBarButtonItem = backButton
@@ -252,7 +252,7 @@ class RecordDetailVC: UIViewController,AVAudioPlayerDelegate {
     
     func delectFromCoreData() {
         if ExamDB.delete(recordFilePath) {
-            print("刪了也存了！！！！！")
+            print("ExamDB---刪了----- ")
         }
     }
 }

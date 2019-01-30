@@ -27,7 +27,11 @@ class QuestionVC: UIViewController {
         let image = #imageLiteral(resourceName: "back-1")
         let backButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(QuestionVC.navigationBackBtnTap))
         navigationItem.leftBarButtonItem = backButton
+        setExamList()
         
+    }
+    func setExamList(){
+        qizCountList.removeAll()
         let examList = ExamDB.getExamList()
         var map = examList.map { $0["qustopic"] as? String ?? "" }
         map = map.filter({$0 != ""})
@@ -64,7 +68,12 @@ class QuestionVC: UIViewController {
         collectionView.dataSource = self
     }
     override func viewWillAppear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    func refresh(){
+        setExamList()
+        collectionView.reloadData()
     }
     
 }
@@ -79,6 +88,7 @@ extension QuestionVC:UICollectionViewDelegate {
                 qizDetailVC.quesDic = question
                 qizDetailVC.qustopic = questionList[safe: indexPath.item]?.qustopic ?? ""
             }
+            qizDetailVC.questionVC = self
             navigationController?.pushViewController(qizDetailVC, animated: true)
         }
     }

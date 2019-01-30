@@ -226,7 +226,7 @@ Start your first test right now!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xp2-HP-hKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1567.2" y="835.23238380809596"/>
+            <point key="canvasLocation" x="1567.2" y="834.33283358320841"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hFn-bi-lVV">

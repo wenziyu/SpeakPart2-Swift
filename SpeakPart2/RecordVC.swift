@@ -22,36 +22,16 @@ class RecordVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationItem.title = "Record"
-//        noticeView.isHidden = true
-        
-//        let dbExamList = ExamDB.getExamList()
-//        for item in dbExamList {
-//            var exam = ExamList()
-//            exam.createtime = item["createtime"] as? NSDate ?? NSDate()
-//            exam.question = item["question"] as? String ?? ""
-//            exam.qustopic = item["qustopic"] as? String ?? ""
-//            exam.voiceAudio = item["voiceAudio"] as? String ?? ""
-//
-//            self.examList.append(exam)
-//        }
-//        setTableView()
-        
+
         selectBtn.addTarget(self, action: #selector(selectBtnTouchUpInside), for: .touchUpInside)
         randomBtn.addTarget(self, action: #selector(randomBtnTouchUpInside), for: .touchUpInside)
-        
-//        tableView.isHidden = true
-//        if dbExamList.count < 1 {
-//            openPlist()
-//            noticeView.isHidden = false
-//            tableView.isHidden = true
-//        }
-//        refresh()
+
     }
     func refresh(){
-        print("我來了---------------")
+        self.navigationItem.title = "Record"
         noticeView.isHidden = true
         dbExamList.removeAll()
+        examList.removeAll()
         dbExamList = ExamDB.getExamList()
         for item in dbExamList {
             var exam = ExamList()
@@ -62,6 +42,7 @@ class RecordVC: UIViewController {
             
             self.examList.append(exam)
         }
+        examList.sort { $0.voiceAudio > $1.voiceAudio }
         setTableView()
         
         if dbExamList.count < 1 {
@@ -79,9 +60,7 @@ class RecordVC: UIViewController {
         tableView.allowsSelection = true
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 102
-//        let footerView = UIView()
-//        footerView.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableview.bounds.width, height: CGFloat(10))
-//        tableview.tableFooterView = footerView
+
     }
     func openPlist(){
         if let fileUrl = Bundle.main.url(forResource: "SpeakingTopic", withExtension: "plist"),
@@ -186,6 +165,30 @@ extension RecordVC:UITableViewDelegate {
             navigationController?.pushViewController(recordDetailVC, animated: true)
         }
     }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        // 生成刪除按鈕
+        let deleteAction: UITableViewRowAction = UITableViewRowAction(style: .default, title: "Delete", handler: {(action, indexPath) -> Void in
+
+            // 將資料從陣列移除
+            let recordFilePath = self.examList[indexPath.row].voiceAudio ?? ""
+            self.examList.remove(at: indexPath.row)
+
+            // 將畫面上的cell移除
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            if ExamDB.delete(recordFilePath) {
+                print("ExamDB---刪了----- ")
+            }
+            
+        })
+
+        deleteAction.backgroundColor = UIColor.black
+
+        return [deleteAction]
+    }
+   
 }
 extension RecordVC:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

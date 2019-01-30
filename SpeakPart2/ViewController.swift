@@ -116,6 +116,8 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.tintColor = UIColor.black
+        tabBarController?.tabBar.isHidden = false
     }
+  
 }
 

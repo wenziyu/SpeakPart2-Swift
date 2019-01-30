@@ -57,6 +57,8 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     
     var quesDic = Question()
     
+    weak var qizDetailVC: QizDetailVC?
+    
     @IBAction private func sliderTouchDown(_ sender: Any) {
         // 按下的那剎那 如果正在播放 則暫停播放和時間
         if voicePlayer?.isPlaying ?? false {
@@ -74,9 +76,10 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     @IBAction private func sliderValueChanged(_ sender: Any) {
         // 更新 label 和 player currentTime
         let value = Double(progressSlider.value)
-        let duration:Double = Double(voicePlayer?.duration ?? 0)
+        guard let voicePlayer = voicePlayer else {return}
+        let duration:Double = Double(voicePlayer.duration)
         timeLabel.text = "\(formatTime(Int(value * duration)))"
-        voicePlayer?.currentTime = value * duration
+        voicePlayer.currentTime = value * duration
     }
     
     @IBAction private func sliderTouchUp(inside sender: Any) {
@@ -288,49 +291,49 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
             print(error)
         }
         
-        
         audioProgressBar.isHidden = true
         progressSlider.isHidden = false
         
-        if voicePlayer?.isPlaying != nil {
+        guard let audioplayer = voicePlayer else {return}
+        if audioplayer.isPlaying {
             sender.setImage(UIImage(named: "play"), for: .normal)
-            voicePlayer?.pause()
+            audioplayer.pause()
             removeAudioTimer()
         } else {
             sender.setImage(UIImage(named: "stopPlay"), for: .normal)
-            voicePlayer?.prepareToPlay()
-            voicePlayer?.play()
+            audioplayer.prepareToPlay()
+            audioplayer.play()
             audioDurationTimer()
         }
     }
     
     func prepreAudioPath() {
-        let recordFilePath = String(format: "%@/Documents/%frecord.caf", NSHomeDirectory(), Int(time))
+        let recordFilePath = String(format: "%@/Documents/%drecord.caf", NSHomeDirectory(), Int(time))
         let recordFileURL = URL(fileURLWithPath: recordFilePath)
         voicePlayer = try? AVAudioPlayer(contentsOf: recordFileURL)
-        voicePlayer?.delegate = self
-        voicePlayer?.numberOfLoops = 0
-        audioDuration = voicePlayer?.duration ?? 0.0
+        guard let voicePlayer = voicePlayer else {return}
+        voicePlayer.delegate = self
+        voicePlayer.numberOfLoops = 0
+        audioDuration = voicePlayer.duration
     }
     
     func audioDurationTimer() {
         audioDurationCount()
         audioSeconds = 1
         audioTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(TestVC.audioDurationCount), userInfo: nil, repeats: true)
-        if let audioTimer = audioTimer {
-            RunLoop.main.add(audioTimer, forMode: .common)
-        }
-        
     }
     
     @objc func audioDurationCount() {
-        let progressRatio = CGFloat((voicePlayer?.currentTime ?? 0.0) / (voicePlayer?.duration ?? 0.0))
+        guard let audioplayer = voicePlayer else {return}
+        
+        // 計算進度條比例
+        let progressRatio = CGFloat(audioplayer.currentTime / audioplayer.duration)
         
         audioSeconds += 1
-        timeLabel.text = formatTime(Int(voicePlayer?.currentTime ?? 0))
-        
+        timeLabel.text = formatTime(Int(audioplayer.currentTime))
         setTime.text = formatTime(Int(audioDuration))
         
+        // updating  slider value when finish dragging
         if !isDraggingTimeSlider {
             progressSlider.value = Float(progressRatio)
         }
@@ -344,7 +347,6 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     // MARK: - save test data to core data method
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         let recordFilePath = String(format: "/Documents/%drecord.caf", Int(time))
-        
         if save == false {
             // 如果還沒存 要存
             sender.setImage(UIImage(named: "save"), for: .normal)
@@ -371,13 +373,13 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
     
     // MARK: - finish record or play method
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        
-        progressSlider.value = Float(voicePlayer?.duration ?? 0)
+        guard let voicePlayer = voicePlayer else {return}
+        progressSlider.value = Float(voicePlayer.duration)
         timeLabel.text = formatTime(Int(audioDuration))
         setTime.text = formatTime(Int(audioDuration))
         playVoiceBtn.setImage(UIImage(named: "play"), for: .normal)
         removeAudioTimer()
-        voicePlayer?.stop()
+        voicePlayer.stop()
         
     }
     
@@ -395,7 +397,6 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
         // Decide Record File Path
         let date = Date()
         time = date.timeIntervalSince1970
-        
         let recordFilePath = String(format: "%@/Documents/%drecord.caf", NSHomeDirectory(), Int(time))
         let recordFileURL = URL(fileURLWithPath: recordFilePath)
         print("Record File Path: \(recordFilePath)")
@@ -423,7 +424,7 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
         if nevercome == true && started == true && save == false {
             alertSetMessage("", settitle: "leave or save")
         }
-        
+        qizDetailVC?.refresh()
         navigationController?.popViewController(animated: true)
     }
     
@@ -457,6 +458,8 @@ class TestVC: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDelegate {
             if ExamDB.insert(examList) {
                 print("存了！！！！！")
             }
+            self.qizDetailVC?.refresh()
+            self.navigationController?.popViewController(animated: true)
         })
         
         let cancel = UIAlertAction(title: "Leave", style: .cancel, handler: { action in

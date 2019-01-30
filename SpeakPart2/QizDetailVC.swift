@@ -22,6 +22,9 @@ class QizDetailVC: UIViewController {
     var qizCountList = [(String,Int)]()
     /// (topic,count)
     var topicCountList = [(String,Int)]()
+    
+    weak var questionVC: QuestionVC?
+    var isRefresh = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +43,15 @@ class QizDetailVC: UIViewController {
     }
     // MARK: - navigation Back Btn Tap
     @objc func navigationBackBtnTap() {
+        if isRefresh {
+            questionVC?.refresh()
+        }
+        
         navigationController?.popViewController(animated: true)
     }
     func setQizCountList(){
+        qizCountList.removeAll()
+        topicCountList.removeAll()
         let examList = ExamDB.getExamList()
         var qizMap = examList.map { $0["question"] as? String ?? "" }
         qizMap = qizMap.filter({$0 != ""})
@@ -104,7 +113,13 @@ class QizDetailVC: UIViewController {
         tableview.tableFooterView = footerView
     }
     override func viewWillAppear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
+    }
+    func refresh(){
+        setQizCountList()
+        collectionView.reloadData()
+        tableview.reloadData()
+        isRefresh = true
     }
 }
 extension QizDetailVC:UITableViewDelegate {
@@ -112,6 +127,7 @@ extension QizDetailVC:UITableViewDelegate {
         let testVC = Utl.getViewControllerWithStoryboard("Main", identifier: "TestVC") as? TestVC
         if let testVC = testVC {
             testVC.quesDic = quesDic[indexPath.row]
+            testVC.qizDetailVC = self
             testVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(testVC, animated: true)
         }
