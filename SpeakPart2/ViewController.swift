@@ -46,8 +46,6 @@ class ViewController: UIViewController {
             }
         }
         questionList.sort { $0.qustCd < $1.qustCd }
-        let path = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
-        print("\(path)")
     }
     func qustCd(_ qizTopic:String)-> String {
         var qustCd = ""

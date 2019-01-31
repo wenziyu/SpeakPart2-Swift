@@ -161,6 +161,8 @@ extension RecordVC:UITableViewDelegate {
         let recordDetailVC = Utl.getViewControllerWithStoryboard("Main", identifier: "RecordDetailVC") as? RecordDetailVC
         if let recordDetailVC = recordDetailVC {
             recordDetailVC.exam = examList[indexPath.row]
+            recordDetailVC.examList = examList
+            recordDetailVC.index = indexPath.row
             recordDetailVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(recordDetailVC, animated: true)
         }

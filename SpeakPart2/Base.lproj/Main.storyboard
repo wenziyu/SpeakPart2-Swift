@@ -645,7 +645,7 @@ Start your first test right now!</string>
         <scene sceneID="Cw3-PF-6Kd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mKi-ju-FqD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="list" selectedImage="list" id="I6z-cO-qiH">
+                    <tabBarItem key="tabBarItem" title="" image="youtube" selectedImage="youtube" id="I6z-cO-qiH">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -692,13 +692,6 @@ Start your first test right now!</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZ8-DO-m1F">
-                                <rect key="frame" x="128.5" y="491" width="118" height="119"/>
-                                <state key="normal" image="bigPlay"/>
-                                <connections>
-                                    <action selector="audioPlayButtonPressed:" destination="vHR-5y-asn" eventType="touchUpInside" id="AgV-t9-MfC"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gj-zw-EwT">
                                 <rect key="frame" x="108.5" y="379.5" width="46" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -737,12 +730,55 @@ Start your first test right now!</string>
                                     <action selector="saveOrNotSavaAction:" destination="vHR-5y-asn" eventType="touchUpInside" id="eMi-H9-W2s"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUQ-D1-DyD">
+                                <rect key="frame" x="62.5" y="521.5" width="250" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4q-jo-2HF">
+                                        <rect key="frame" x="170" y="0.0" width="80" height="60"/>
+                                        <state key="normal" title="Button" image="next"/>
+                                        <connections>
+                                            <action selector="nextButtonPressed:" destination="vHR-5y-asn" eventType="touchUpInside" id="kQN-DP-dX3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VeT-MX-2Pi">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="60"/>
+                                        <state key="normal" title="Button" image="last"/>
+                                        <connections>
+                                            <action selector="lastButtonPressed:" destination="vHR-5y-asn" eventType="touchUpInside" id="fLE-SM-btg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZ8-DO-m1F">
+                                        <rect key="frame" x="85" y="0.0" width="80" height="60"/>
+                                        <state key="normal" image="r_play"/>
+                                        <connections>
+                                            <action selector="audioPlayButtonPressed:" destination="vHR-5y-asn" eventType="touchUpInside" id="AgV-t9-MfC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="XZ8-DO-m1F" firstAttribute="leading" secondItem="VeT-MX-2Pi" secondAttribute="trailing" constant="5" id="2Tl-zd-kdF"/>
+                                    <constraint firstItem="H4q-jo-2HF" firstAttribute="leading" secondItem="XZ8-DO-m1F" secondAttribute="trailing" constant="5" id="A2a-gV-Y2b"/>
+                                    <constraint firstAttribute="height" constant="60" id="FC1-n3-KQ9"/>
+                                    <constraint firstAttribute="bottom" secondItem="H4q-jo-2HF" secondAttribute="bottom" id="FxE-em-gWk"/>
+                                    <constraint firstAttribute="bottom" secondItem="XZ8-DO-m1F" secondAttribute="bottom" id="K3W-I6-V2f"/>
+                                    <constraint firstItem="XZ8-DO-m1F" firstAttribute="top" secondItem="RUQ-D1-DyD" secondAttribute="top" id="NtE-M3-W6S"/>
+                                    <constraint firstItem="VeT-MX-2Pi" firstAttribute="top" secondItem="RUQ-D1-DyD" secondAttribute="top" id="TLC-l7-zWT"/>
+                                    <constraint firstItem="VeT-MX-2Pi" firstAttribute="width" secondItem="H4q-jo-2HF" secondAttribute="width" id="VdD-pn-C5b"/>
+                                    <constraint firstItem="VeT-MX-2Pi" firstAttribute="width" secondItem="XZ8-DO-m1F" secondAttribute="width" id="c9x-E6-Ha0"/>
+                                    <constraint firstItem="VeT-MX-2Pi" firstAttribute="leading" secondItem="RUQ-D1-DyD" secondAttribute="leading" id="dA4-I4-lCj"/>
+                                    <constraint firstAttribute="trailing" secondItem="H4q-jo-2HF" secondAttribute="trailing" id="jar-Pk-Dpg"/>
+                                    <constraint firstAttribute="bottom" secondItem="VeT-MX-2Pi" secondAttribute="bottom" id="k7c-T7-CnF"/>
+                                    <constraint firstAttribute="width" constant="250" id="m9X-kF-kjV"/>
+                                    <constraint firstItem="H4q-jo-2HF" firstAttribute="top" secondItem="RUQ-D1-DyD" secondAttribute="top" id="slh-rJ-8NG"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="eUi-V2-YOm" firstAttribute="centerX" secondItem="8pP-Y9-SuW" secondAttribute="centerX" id="1qW-I9-uGn"/>
-                            <constraint firstItem="XZ8-DO-m1F" firstAttribute="centerX" secondItem="8pP-Y9-SuW" secondAttribute="centerX" id="2sa-jp-iAY"/>
+                            <constraint firstItem="RUQ-D1-DyD" firstAttribute="centerY" secondItem="8pP-Y9-SuW" secondAttribute="centerY" multiplier="1.65" constant="1" id="4GE-Nc-9is"/>
                             <constraint firstItem="3Tf-zq-qGp" firstAttribute="width" secondItem="Q13-gW-czD" secondAttribute="width" id="9aj-ql-xzD"/>
                             <constraint firstItem="3Tf-zq-qGp" firstAttribute="top" secondItem="Q13-gW-czD" secondAttribute="bottom" constant="10" id="En4-MS-nnd"/>
                             <constraint firstItem="0pa-sM-awK" firstAttribute="centerX" secondItem="8pP-Y9-SuW" secondAttribute="centerX" id="Hy9-0h-wbh"/>
@@ -750,7 +786,6 @@ Start your first test right now!</string>
                             <constraint firstItem="Ouh-UL-Myx" firstAttribute="centerY" secondItem="hHt-FQ-gDi" secondAttribute="centerY" id="LR5-32-2J0"/>
                             <constraint firstItem="hHt-FQ-gDi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7gj-zw-EwT" secondAttribute="trailing" constant="8" symbolic="YES" id="Mqe-vC-sZR"/>
                             <constraint firstItem="3Tf-zq-qGp" firstAttribute="centerX" secondItem="8pP-Y9-SuW" secondAttribute="centerX" id="PuN-T3-OHr"/>
-                            <constraint firstItem="XZ8-DO-m1F" firstAttribute="centerY" secondItem="8pP-Y9-SuW" secondAttribute="centerY" multiplier="1.65" id="QQu-W9-ZqZ"/>
                             <constraint firstItem="eUi-V2-YOm" firstAttribute="centerY" secondItem="8pP-Y9-SuW" secondAttribute="centerY" multiplier="1.3" id="SdK-55-zGe"/>
                             <constraint firstItem="hHt-FQ-gDi" firstAttribute="centerX" secondItem="8pP-Y9-SuW" secondAttribute="centerX" id="VKh-ly-8EW"/>
                             <constraint firstItem="eUi-V2-YOm" firstAttribute="top" secondItem="hHt-FQ-gDi" secondAttribute="bottom" constant="18" id="Wzn-pZ-Orr"/>
@@ -760,6 +795,7 @@ Start your first test right now!</string>
                             <constraint firstItem="bza-Vy-DYN" firstAttribute="trailing" secondItem="Ouh-UL-Myx" secondAttribute="trailing" constant="108.5" id="bxP-Lx-qFz"/>
                             <constraint firstItem="7gj-zw-EwT" firstAttribute="leading" secondItem="bza-Vy-DYN" secondAttribute="leading" constant="108.5" id="dWx-HR-Vz5"/>
                             <constraint firstItem="7gj-zw-EwT" firstAttribute="centerY" secondItem="hHt-FQ-gDi" secondAttribute="centerY" id="fDl-mX-lmb"/>
+                            <constraint firstItem="RUQ-D1-DyD" firstAttribute="centerX" secondItem="8pP-Y9-SuW" secondAttribute="centerX" id="njV-f5-ITl"/>
                             <constraint firstItem="0pa-sM-awK" firstAttribute="top" secondItem="3Tf-zq-qGp" secondAttribute="bottom" constant="10" id="rxf-dh-gW0"/>
                             <constraint firstItem="0pa-sM-awK" firstAttribute="width" secondItem="8pP-Y9-SuW" secondAttribute="width" multiplier="0.95" id="t6y-nt-j34"/>
                             <constraint firstItem="Ouh-UL-Myx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hHt-FQ-gDi" secondAttribute="trailing" constant="8" symbolic="YES" id="tCA-DP-t3e"/>
@@ -791,15 +827,17 @@ Start your first test right now!</string>
     </scenes>
     <resources>
         <image name="again" width="40" height="64"/>
-        <image name="bigPlay" width="118" height="119"/>
+        <image name="last" width="80" height="60"/>
         <image name="like" width="24" height="22"/>
-        <image name="list" width="25" height="20"/>
         <image name="microphone" width="22" height="30"/>
+        <image name="next" width="80" height="60"/>
         <image name="noSave" width="40" height="64"/>
         <image name="play" width="40" height="64"/>
+        <image name="r_play" width="80" height="60"/>
         <image name="random" width="189" height="60"/>
         <image name="select" width="189" height="60"/>
         <image name="startRecord" width="120" height="120"/>
+        <image name="youtube" width="30" height="24"/>
     </resources>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

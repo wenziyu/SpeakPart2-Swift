@@ -34,6 +34,8 @@ class RecordDetailVC: UIViewController,AVAudioPlayerDelegate {
     var isPlaying = false
     
     var exam = ExamList()
+    var examList = [ExamList]()
+    var index = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +45,26 @@ class RecordDetailVC: UIViewController,AVAudioPlayerDelegate {
         navigationItem.leftBarButtonItem = backButton
         
         questionLabel.numberOfLines = 0
+        
+        // permission for audio player
+        let instance = AVAudioSession.sharedInstance()
+        if instance.responds(to: #selector(AVAudioSession.requestRecordPermission(_:))) {
+            instance.requestRecordPermission({ granted in
+                if granted {
+                    print("User granted the permission.")
+                } else {
+                    print("User did not grant the permission.")
+                }
+            })
+        }
+        setData()
+    }
+    func setData(){
         isDraggingTimeSlider = false
         save = true
         isPlaying = false
+        saveBtn.setImage(#imageLiteral(resourceName: "like"), for: .normal)
+        audioPlayBtn.setImage(#imageLiteral(resourceName: "r_play"), for: .normal)
         
         let date: Date? = exam.createtime as Date? ?? Date()
         let dateFormatter = DateFormatter()
@@ -59,19 +78,6 @@ class RecordDetailVC: UIViewController,AVAudioPlayerDelegate {
         topicLabel.text = exam.qustopic
         questionLabel.text = exam.question
         recordFilePath = exam.voiceAudio
-        
-        // permission for audio player
-        let instance = AVAudioSession.sharedInstance()
-        if instance.responds(to: #selector(AVAudioSession.requestRecordPermission(_:))) {
-            instance.requestRecordPermission({ granted in
-                if granted {
-                    print("User granted the permission.")
-                } else {
-                    print("User did not grant the permission.")
-                }
-            })
-        }
-        
         
         prepreAudioPath()
         audioTimeLabel.text = formatTime(Int(audioDuration))
@@ -92,14 +98,28 @@ class RecordDetailVC: UIViewController,AVAudioPlayerDelegate {
     @IBAction func saveOrNotSavaAction(_ sender: UIButton) {
         if save == true {
             // 按下後變成不存
-            saveBtn.setImage(UIImage(named: "dislike"), for: .normal)
+            saveBtn.setImage(#imageLiteral(resourceName: "dislike"), for: .normal)
             save = false
         } else {
             save = true
-            saveBtn.setImage(UIImage(named: "like"), for: .normal)
+            saveBtn.setImage(#imageLiteral(resourceName: "like"), for: .normal)
         }
     }
     
+    @IBAction func lastButtonPressed(_ sender: UIButton) {
+        if index - 1 >= 0 {
+            index = index - 1
+            exam = examList[index]
+            setData()
+        }
+    }
+    @IBAction func nextButtonPressed(_ sender: UIButton) {
+        if index + 1 < examList.count {
+            index = index + 1
+            exam = examList[index]
+            setData()
+        }
+    }
     @IBAction func audioPlayButtonPressed(_ sender: UIButton) {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
@@ -109,11 +129,11 @@ class RecordDetailVC: UIViewController,AVAudioPlayerDelegate {
         }
         guard let audioplayer = audioplayer else {return}
         if audioplayer.isPlaying {
-            sender.setImage(UIImage(named: "bigPlay"), for: .normal)
+            sender.setImage(#imageLiteral(resourceName: "r_play"), for: .normal)
             audioplayer.pause()
             removeAudioTimer()
         } else {
-            sender.setImage(UIImage(named: "bigStop"), for: .normal)
+            sender.setImage(#imageLiteral(resourceName: "r_playing"), for: .normal)
             audioplayer.prepareToPlay()
             audioplayer.play()
             audioDurationTimer()
@@ -158,7 +178,7 @@ class RecordDetailVC: UIViewController,AVAudioPlayerDelegate {
         countTimeLabel.text = formatTime(Int(audioDuration))
         audioTimeLabel.text = formatTime(Int(audioDuration))
         
-        audioPlayBtn.setImage(UIImage(named: "bigPlay"), for: .normal)
+        audioPlayBtn.setImage(#imageLiteral(resourceName: "r_play"), for: .normal)
         removeAudioTimer()
         audioplayer?.stop()
         
