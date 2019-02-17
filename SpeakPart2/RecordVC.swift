@@ -42,7 +42,7 @@ class RecordVC: UIViewController {
             
             self.examList.append(exam)
         }
-        examList.sort { $0.voiceAudio > $1.voiceAudio }
+        sortExamList()
         setTableView()
         
         if dbExamList.count < 1 {
@@ -51,6 +51,27 @@ class RecordVC: UIViewController {
             tableView.isHidden = true
         }
         tableView.reloadData()
+    }
+    func sortExamList(){
+        let sort = UserDefaults.standard.string(forKey: "SORT") ?? "New -> Old"
+        switch sort {
+        case "New -> Old":
+            examList.sort { $0.voiceAudio > $1.voiceAudio }
+            break
+        case "Old -> New":
+            examList.sort { $0.voiceAudio < $1.voiceAudio }
+            break
+        case "Topic":
+            examList.sort { $0.qustopic < $1.qustopic }
+            break
+        case "Question":
+            examList.sort { $0.question < $1.question }
+            break
+        default:
+            examList.sort { $0.voiceAudio > $1.voiceAudio }
+            break
+        }
+        
     }
     func setTableView(){
         tableView.delegate = self

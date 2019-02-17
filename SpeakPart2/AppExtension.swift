@@ -35,10 +35,6 @@ extension UIFont {
     class func semiboldFont(_ size: CGFloat) -> UIFont{
         return UIFont(name: "PingFangSC-Semibold", size: size)!
     }
-    
-    class func boldFont(_ size: CGFloat) -> UIFont{
-        return UIFont(name: "PingFangSC-Bold", size: size)!
-    }
 }
 extension NSDate
 {

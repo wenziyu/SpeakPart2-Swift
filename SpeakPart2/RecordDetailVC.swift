@@ -66,6 +66,9 @@ class RecordDetailVC: UIViewController,AVAudioPlayerDelegate {
         saveBtn.setImage(#imageLiteral(resourceName: "like"), for: .normal)
         audioPlayBtn.setImage(#imageLiteral(resourceName: "r_play"), for: .normal)
         
+        removeAudioTimer()
+        audioplayer?.stop()
+        
         let date: Date? = exam.createtime as Date? ?? Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
@@ -74,6 +77,8 @@ class RecordDetailVC: UIViewController,AVAudioPlayerDelegate {
             stringDate = dateFormatter.string(from: date)
         }
         
+        countTimeLabel.text = "00:00"
+        progressSlider.value = 0
         dateLabel.text = stringDate
         topicLabel.text = exam.qustopic
         questionLabel.text = exam.question
@@ -88,10 +93,13 @@ class RecordDetailVC: UIViewController,AVAudioPlayerDelegate {
         let recordFileURL = URL(fileURLWithPath: Path)
         
         // init audio play (can't init while calling play method if use pause)
+        
         audioplayer = try? AVAudioPlayer(contentsOf: recordFileURL)
-        audioplayer?.delegate = self
-        audioplayer?.numberOfLoops = 0
-        audioDuration = audioplayer?.duration ?? 0
+        guard let audioplayer = audioplayer else {return}
+        audioplayer.delegate = self
+        audioplayer.numberOfLoops = 0
+        audioplayer.currentTime = 0
+        audioDuration = audioplayer.duration
         
     }
     
