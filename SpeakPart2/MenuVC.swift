@@ -31,7 +31,7 @@ class MenuVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        tableView.bounces = true
+        tableView.bounces = false
         tableView.allowsSelection = true
         tableView.sectionHeaderHeight = 100
         tableView.rowHeight = 50

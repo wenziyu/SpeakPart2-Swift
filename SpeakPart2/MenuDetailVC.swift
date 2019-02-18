@@ -73,7 +73,7 @@ class MenuDetailVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        tableView.bounces = true
+        tableView.bounces = false
         tableView.allowsSelection = true
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 50
@@ -236,11 +236,53 @@ extension MenuDetailVC:UITableViewDataSource {
                     cell = WeekCell(style:UITableViewCell.CellStyle.default, reuseIdentifier:identifier)
                 }
                 cell.selectionStyle = .none
-               
+                
+                setButtons(cell.mon)
+                setButtons(cell.tue)
+                setButtons(cell.wed)
+                setButtons(cell.thu)
+                setButtons(cell.fri)
+                setButtons(cell.sat)
+                setButtons(cell.sun)
+                
+//                cell.mon.addTarget(self, action: #selector(weekBtnArrActions), for: .touchUpInside)
+//                cell.tue.addTarget(self, action: #selector(weekBtnArrActions), for: .touchUpInside)
+//                cell.wed.addTarget(self, action: #selector(weekBtnArrActions), for: .touchUpInside)
+//                cell.thu.addTarget(self, action: #selector(weekBtnArrActions), for: .touchUpInside)
+//                cell.fri.addTarget(self, action: #selector(weekBtnArrActions), for: .touchUpInside)
+//                cell.sat.addTarget(self, action: #selector(weekBtnArrActions), for: .touchUpInside)
+//                cell.sun.addTarget(self, action: #selector(weekBtnArrActions), for: .touchUpInside)
+                
                 return cell
             }
             
         }
+    }
+    func setButtons(_ sender:UIButton){
+        if rotationValue.contains(sender.tag) {
+            sender.layer.borderColor = UIColor.white.cgColor
+            sender.titleLabel?.textColor = UIColor.white
+            sender.backgroundColor = UIColor.black
+            sender.tintColor = UIColor.white
+        }else {
+            sender.layer.borderColor = UIColor.black.cgColor
+            sender.titleLabel?.textColor = UIColor.black
+            sender.backgroundColor = UIColor.white
+            sender.tintColor = UIColor.black
+        }
+        sender.addTarget(self, action: #selector(weekBtnArrActions), for: .touchUpInside)
+    }
+    
+    @objc func weekBtnArrActions(sender:UIButton){
+        if rotationValue.contains(sender.tag) { // remove
+            let value = rotationValue.filter({$0 != sender.tag})
+            userDefaults.set(value, forKey: "NOTIFICATION_DAY")
+        }else { // add
+            var value = rotationValue
+            value.append(sender.tag)
+            userDefaults.set(value, forKey: "NOTIFICATION_DAY")
+        }
+        tableView.reloadData()
     }
     
     @objc func cellSwitchBtnActoins(sender:UISwitch){
@@ -248,11 +290,24 @@ extension MenuDetailVC:UITableViewDataSource {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge, .carPlay], completionHandler: { (granted, error) in
                 if granted {
                     print("允許")
+                    self.userDefaults.set(true, forKey: "NOTIFICATION")
                 } else {
-                    print("不允許，請至設定開啟通知")
+                    self.userDefaults.set(false, forKey: "NOTIFICATION")
+                    
+                    let alert = UIAlertController(title: "Settings -> \nIELTS Speaking Part 2 -> \nNotifications -> \nAllow Notifications", message: "", preferredStyle: .alert)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    // change to desired number of seconds (in this case 5 seconds)
+                    let when = DispatchTime.now() + 3
+                    DispatchQueue.main.asyncAfter(deadline: when){
+                        // your code with delay
+                        sender.isOn = false
+                        alert.dismiss(animated: true, completion: nil)
+                    }
                 }
+
             })
-            userDefaults.set(true, forKey: "NOTIFICATION")
+            
         }else {
             userDefaults.set(false, forKey: "NOTIFICATION")
         }

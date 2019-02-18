@@ -839,86 +839,109 @@ Start your first test right now!</string>
                                             <outlet property="title" destination="b9K-Qx-4ZU" id="dag-Kp-eiu"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeekCell" rowHeight="88" id="NhY-VN-gAa" customClass="WeekCell" customModule="SpeakPart2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="130" width="375" height="88"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeekCell" rowHeight="127" id="NhY-VN-gAa" customClass="WeekCell" customModule="SpeakPart2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="130" width="375" height="127"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NhY-VN-gAa" id="leV-7x-NwD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="126.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HWe-ps-5fy">
-                                                    <rect key="frame" x="15" y="87" width="345" height="0.5"/>
+                                                    <rect key="frame" x="15" y="126" width="345" height="0.5"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="0.5" id="wDK-Q8-kyj"/>
                                                     </constraints>
                                                 </view>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VGP-3y-FxI">
-                                                    <rect key="frame" x="15" y="9" width="345" height="30"/>
-                                                    <subviews>
-                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sG4-zw-D2V">
-                                                            <rect key="frame" x="0.0" y="0.0" width="108.5" height="30"/>
-                                                            <state key="normal" title="Mon"/>
-                                                        </button>
-                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dU-pp-Vo9">
-                                                            <rect key="frame" x="118.5" y="0.0" width="108" height="30"/>
-                                                            <state key="normal" title="Tue"/>
-                                                        </button>
-                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OI-Hn-l0u">
-                                                            <rect key="frame" x="236.5" y="0.0" width="108.5" height="30"/>
-                                                            <state key="normal" title="Wed"/>
-                                                        </button>
-                                                    </subviews>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Hj-Ql-iMj">
+                                                    <rect key="frame" x="15" y="9" width="80" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="diG-jt-mXA"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="U79-ot-fE7"/>
+                                                        <constraint firstAttribute="height" constant="30" id="hvs-vt-20f"/>
                                                     </constraints>
-                                                </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AY3-sR-GZq">
-                                                    <rect key="frame" x="15" y="48" width="345" height="30"/>
-                                                    <subviews>
-                                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RbL-mm-DIM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="79" height="30"/>
-                                                            <state key="normal" title="Thu"/>
-                                                        </button>
-                                                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-BV-u8n">
-                                                            <rect key="frame" x="89" y="0.0" width="78.5" height="30"/>
-                                                            <state key="normal" title="Fri"/>
-                                                        </button>
-                                                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ox3-qI-ghT">
-                                                            <rect key="frame" x="177.5" y="0.0" width="79" height="30"/>
-                                                            <state key="normal" title="Sat"/>
-                                                        </button>
-                                                        <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQ0-LK-rv0">
-                                                            <rect key="frame" x="266.5" y="0.0" width="78.5" height="30"/>
-                                                            <state key="normal" title="Sun"/>
-                                                        </button>
-                                                    </subviews>
+                                                    <state key="normal" title="Mon"/>
+                                                </button>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="881-j7-nRl">
+                                                    <rect key="frame" x="15" y="48" width="80" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="HiX-ek-b24"/>
+                                                        <constraint firstAttribute="height" constant="30" id="Zit-fX-inF"/>
+                                                        <constraint firstAttribute="width" constant="80" id="p4s-R4-fJQ"/>
                                                     </constraints>
-                                                </stackView>
+                                                    <state key="normal" title="Wed"/>
+                                                </button>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36r-LX-LzO">
+                                                    <rect key="frame" x="105" y="9" width="80" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="0Mh-h6-y8D"/>
+                                                        <constraint firstAttribute="height" constant="30" id="1PU-UL-b8p"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Tue"/>
+                                                </button>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMe-8d-SF0">
+                                                    <rect key="frame" x="105" y="48" width="80" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="3tf-k3-3Qg"/>
+                                                        <constraint firstAttribute="height" constant="30" id="4WC-x8-ldw"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Thu"/>
+                                                </button>
+                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tbp-cd-4Iv">
+                                                    <rect key="frame" x="193" y="48" width="80" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="dD0-Gl-3eM"/>
+                                                        <constraint firstAttribute="width" constant="80" id="hub-ZU-Efl"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Fri"/>
+                                                </button>
+                                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvB-4g-SPN">
+                                                    <rect key="frame" x="15" y="87" width="80" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="VFn-1f-sVE"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="x3B-XR-q0n"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Sat"/>
+                                                </button>
+                                                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tkd-dx-pbK">
+                                                    <rect key="frame" x="105" y="87" width="80" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="J7A-RK-Rm0"/>
+                                                        <constraint firstAttribute="height" constant="30" id="rTA-mw-VqZ"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Sun"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="AY3-sR-GZq" firstAttribute="top" secondItem="VGP-3y-FxI" secondAttribute="bottom" constant="9" id="659-tD-eng"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Tbp-cd-4Iv" secondAttribute="trailing" constant="100" id="1yU-81-kIG"/>
+                                                <constraint firstItem="Tkd-dx-pbK" firstAttribute="leading" secondItem="JvB-4g-SPN" secondAttribute="trailing" constant="10" id="69x-0p-rGi"/>
                                                 <constraint firstAttribute="bottom" secondItem="HWe-ps-5fy" secondAttribute="bottom" id="7p5-rl-Oni"/>
+                                                <constraint firstItem="JvB-4g-SPN" firstAttribute="leading" secondItem="leV-7x-NwD" secondAttribute="leading" constant="15" id="9p4-UF-zCe"/>
                                                 <constraint firstAttribute="trailing" secondItem="HWe-ps-5fy" secondAttribute="trailing" constant="15" id="AG7-Zd-U76"/>
-                                                <constraint firstAttribute="trailing" secondItem="AY3-sR-GZq" secondAttribute="trailing" constant="15" id="IxK-js-eD8"/>
-                                                <constraint firstItem="VGP-3y-FxI" firstAttribute="leading" secondItem="leV-7x-NwD" secondAttribute="leading" constant="15" id="JbA-AM-82t"/>
-                                                <constraint firstItem="HWe-ps-5fy" firstAttribute="top" secondItem="AY3-sR-GZq" secondAttribute="bottom" constant="9" id="KOh-y3-iUO"/>
-                                                <constraint firstAttribute="trailing" secondItem="VGP-3y-FxI" secondAttribute="trailing" constant="15" id="a4n-59-fUb"/>
-                                                <constraint firstItem="AY3-sR-GZq" firstAttribute="leading" secondItem="leV-7x-NwD" secondAttribute="leading" constant="15" id="caC-BR-8tz"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="36r-LX-LzO" secondAttribute="trailing" constant="20" symbolic="YES" id="CNw-iS-UdJ"/>
+                                                <constraint firstItem="8Hj-Ql-iMj" firstAttribute="leading" secondItem="leV-7x-NwD" secondAttribute="leading" constant="15" id="HXy-R6-k5i"/>
+                                                <constraint firstItem="Tkd-dx-pbK" firstAttribute="centerY" secondItem="JvB-4g-SPN" secondAttribute="centerY" id="KJB-to-exJ"/>
+                                                <constraint firstItem="HWe-ps-5fy" firstAttribute="top" secondItem="JvB-4g-SPN" secondAttribute="bottom" constant="9" id="L7Z-or-t6K"/>
+                                                <constraint firstItem="Tbp-cd-4Iv" firstAttribute="centerY" secondItem="MMe-8d-SF0" secondAttribute="centerY" id="QwA-91-dyt"/>
+                                                <constraint firstItem="MMe-8d-SF0" firstAttribute="leading" secondItem="881-j7-nRl" secondAttribute="trailing" constant="10" id="QwJ-HV-hYt"/>
+                                                <constraint firstItem="8Hj-Ql-iMj" firstAttribute="top" secondItem="leV-7x-NwD" secondAttribute="top" constant="9" id="Uk5-W1-Xbv"/>
+                                                <constraint firstItem="881-j7-nRl" firstAttribute="top" secondItem="8Hj-Ql-iMj" secondAttribute="bottom" constant="9" id="V7e-jJ-7Td"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Tkd-dx-pbK" secondAttribute="trailing" constant="20" symbolic="YES" id="ZKC-1e-EKm"/>
+                                                <constraint firstItem="Tbp-cd-4Iv" firstAttribute="leading" secondItem="MMe-8d-SF0" secondAttribute="trailing" constant="8" symbolic="YES" id="aZQ-ox-Js3"/>
+                                                <constraint firstItem="36r-LX-LzO" firstAttribute="leading" secondItem="8Hj-Ql-iMj" secondAttribute="trailing" constant="10" id="j5z-fh-5V5"/>
+                                                <constraint firstItem="JvB-4g-SPN" firstAttribute="top" secondItem="881-j7-nRl" secondAttribute="bottom" constant="9" id="kHL-eH-mjw"/>
                                                 <constraint firstItem="HWe-ps-5fy" firstAttribute="leading" secondItem="leV-7x-NwD" secondAttribute="leading" constant="15" id="lEV-5H-UJu"/>
-                                                <constraint firstItem="VGP-3y-FxI" firstAttribute="top" secondItem="leV-7x-NwD" secondAttribute="top" constant="9" id="tg2-Hv-dBf"/>
+                                                <constraint firstItem="MMe-8d-SF0" firstAttribute="centerY" secondItem="881-j7-nRl" secondAttribute="centerY" id="mFy-g1-qHG"/>
+                                                <constraint firstItem="36r-LX-LzO" firstAttribute="centerY" secondItem="8Hj-Ql-iMj" secondAttribute="centerY" id="mk3-bB-9Qn"/>
+                                                <constraint firstItem="881-j7-nRl" firstAttribute="leading" secondItem="leV-7x-NwD" secondAttribute="leading" constant="15" id="nRK-le-ys9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outletCollection property="WeekBtnArr" destination="sG4-zw-D2V" collectionClass="NSMutableArray" id="gHT-0B-uFo"/>
-                                            <outletCollection property="WeekBtnArr" destination="6dU-pp-Vo9" collectionClass="NSMutableArray" id="X0T-Yw-s4n"/>
-                                            <outletCollection property="WeekBtnArr" destination="6OI-Hn-l0u" collectionClass="NSMutableArray" id="On7-Uv-JUe"/>
-                                            <outletCollection property="WeekBtnArr" destination="RbL-mm-DIM" collectionClass="NSMutableArray" id="IZn-jh-5R9"/>
-                                            <outletCollection property="WeekBtnArr" destination="cEt-BV-u8n" collectionClass="NSMutableArray" id="R5r-aK-IFe"/>
-                                            <outletCollection property="WeekBtnArr" destination="Ox3-qI-ghT" collectionClass="NSMutableArray" id="5PE-kR-wEJ"/>
-                                            <outletCollection property="WeekBtnArr" destination="uQ0-LK-rv0" collectionClass="NSMutableArray" id="RaR-JR-uns"/>
+                                            <outlet property="fri" destination="Tbp-cd-4Iv" id="sxe-9o-ga9"/>
+                                            <outlet property="mon" destination="8Hj-Ql-iMj" id="aXh-N6-2Vo"/>
+                                            <outlet property="sat" destination="JvB-4g-SPN" id="599-ci-TIz"/>
+                                            <outlet property="sun" destination="Tkd-dx-pbK" id="r0T-wv-7BD"/>
+                                            <outlet property="thu" destination="MMe-8d-SF0" id="mfz-hr-GFE"/>
+                                            <outlet property="tue" destination="36r-LX-LzO" id="CkQ-bf-Sk6"/>
+                                            <outlet property="wed" destination="881-j7-nRl" id="gVp-vl-YBd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
