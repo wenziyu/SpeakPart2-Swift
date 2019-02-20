@@ -78,6 +78,12 @@ class ViewController: UIViewController {
         case "Family, friends and pets":
             qustCd = "FFAP09"
             break
+        case "Experiences":
+            qustCd = "E10"
+            break
+        case "Others":
+            qustCd = "O11"
+            break
         default:
             break
         }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4547B93221F6CF4400D4C8FE /* SpeakingTopic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4547B93121F6CF4400D4C8FE /* SpeakingTopic.plist */; };
 		4547B93421F6D09800D4C8FE /* QizDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4547B93321F6D09800D4C8FE /* QizDetailVC.swift */; };
 		4547B93621F94CAE00D4C8FE /* QizDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4547B93521F94CAE00D4C8FE /* QizDetailCell.swift */; };
 		4547B93921F96FCA00D4C8FE /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4547B93721F96FCA00D4C8FE /* TopicCell.swift */; };
@@ -32,6 +31,7 @@
 		4570AB9921F31E46004A4FDE /* QizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4570AB9721F31E46004A4FDE /* QizCell.swift */; };
 		4570AB9A21F31E46004A4FDE /* QizCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4570AB9821F31E46004A4FDE /* QizCell.xib */; };
 		4570AB9C21F32481004A4FDE /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4570AB9B21F32481004A4FDE /* AppExtension.swift */; };
+		9B0637DC221D99260088A768 /* SpeakingTopic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B0637DB221D99260088A768 /* SpeakingTopic.plist */; };
 		9B18D53022194C7F0045A648 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18D52F22194C7F0045A648 /* SwitchCell.swift */; };
 		9B18D5322219BA340045A648 /* WeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18D5312219BA340045A648 /* WeekCell.swift */; };
 		9B88BFFD221450E400CC6A16 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88BFFC221450E400CC6A16 /* MenuVC.swift */; };
@@ -42,7 +42,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4547B93121F6CF4400D4C8FE /* SpeakingTopic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SpeakingTopic.plist; sourceTree = "<group>"; };
 		4547B93321F6D09800D4C8FE /* QizDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QizDetailVC.swift; sourceTree = "<group>"; };
 		4547B93521F94CAE00D4C8FE /* QizDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QizDetailCell.swift; sourceTree = "<group>"; };
 		4547B93721F96FCA00D4C8FE /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 		4570AB9721F31E46004A4FDE /* QizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QizCell.swift; sourceTree = "<group>"; };
 		4570AB9821F31E46004A4FDE /* QizCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QizCell.xib; sourceTree = "<group>"; };
 		4570AB9B21F32481004A4FDE /* AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtension.swift; sourceTree = "<group>"; };
+		9B0637DB221D99260088A768 /* SpeakingTopic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SpeakingTopic.plist; sourceTree = "<group>"; };
 		9B18D52F22194C7F0045A648 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		9B18D5312219BA340045A648 /* WeekCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCell.swift; sourceTree = "<group>"; };
 		9B88BFFC221450E400CC6A16 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 				4570AB6621F1B907004A4FDE /* Assets.xcassets */,
 				4570AB6821F1B907004A4FDE /* LaunchScreen.storyboard */,
 				4570AB6B21F1B907004A4FDE /* Info.plist */,
-				4547B93121F6CF4400D4C8FE /* SpeakingTopic.plist */,
+				9B0637DB221D99260088A768 /* SpeakingTopic.plist */,
 				4570AB6321F1B906004A4FDE /* SpeakPart2.xcdatamodeld */,
 			);
 			path = SpeakPart2;
@@ -291,7 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4547B93221F6CF4400D4C8FE /* SpeakingTopic.plist in Resources */,
+				9B0637DC221D99260088A768 /* SpeakingTopic.plist in Resources */,
 				4570AB6A21F1B907004A4FDE /* LaunchScreen.storyboard in Resources */,
 				4570AB9A21F31E46004A4FDE /* QizCell.xib in Resources */,
 				4570AB6721F1B907004A4FDE /* Assets.xcassets in Resources */,
@@ -486,7 +486,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SpeakTestHelper.SpeakPart2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SpeakTestHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -505,7 +505,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SpeakTestHelper.SpeakPart2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SpeakTestHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import StoreKit
+import MessageUI
 
-class MenuVC: UIViewController {
+class MenuVC: UIViewController,MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -47,7 +49,41 @@ class MenuVC: UIViewController {
         rowList = [[("Display",""),("Reminder",switchValue)],[("App Store review",""),("Send feedback","zoedevelopertw@")],[("Open Source Libraries","")]]
         tableView.reloadData()
     }
-   
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            print("OS Version: \(getOSInfo())")
+            print("App version: \(getAppInfo())")
+            print("App Name: \(getAppName())")
+            
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["zoedevelopertw@gmail.com"])
+            let message = "OS Version: \(getOSInfo())\nApp version: \(getAppInfo())\nApp Name: \(getAppName())\nMsssage:\n"
+            
+            mail.setMessageBody(message, isHTML: false)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    func getAppInfo()->String {
+        guard let dictionary = Bundle.main.infoDictionary else{return "N/V"}
+        let version = dictionary["CFBundleShortVersionString"] as? String ?? ""
+        let build = dictionary["CFBundleVersion"] as? String ?? ""
+        return version + "(" + build + ")"
+    }
+    func getAppName()->String {
+        let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? ""
+        return appName
+    }
+    func getOSInfo()->String {
+        let os = ProcessInfo().operatingSystemVersion
+        return String(os.majorVersion) + "." + String(os.minorVersion) + "." + String(os.patchVersion)
+    }
 }
 extension MenuVC:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -70,16 +106,21 @@ extension MenuVC:UITableViewDelegate {
             break
         case 1:
             if indexPath.row == 0 {
-                print("ffd")
+                if #available(iOS 10.3, *) {
+                    SKStoreReviewController.requestReview()
+                } else {
+                    let str = "itms-apps://itunes.apple.com/app/id1279615823?action=write-review"
+                    UIApplication.shared.open(URL(string: str)!, options: [:], completionHandler: nil)
+                }
             }else if indexPath.row == 1 {
-                print("f22222fd")
+                sendEmail()
             }
             break
         default:
             break
         }
-
     }
+  
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MenuHeaderCell") as! MenuHeaderCell
         headerView.title.text = sectionList[section].0

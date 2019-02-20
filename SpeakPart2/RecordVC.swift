@@ -45,10 +45,13 @@ class RecordVC: UIViewController {
         sortExamList()
         setTableView()
         
-        if dbExamList.count < 1 {
+        if dbExamList.count <= 0 {
             openPlist()
             noticeView.isHidden = false
             tableView.isHidden = true
+        }else {
+            noticeView.isHidden = true
+            tableView.isHidden = false
         }
         tableView.reloadData()
     }
@@ -84,6 +87,7 @@ class RecordVC: UIViewController {
 
     }
     func openPlist(){
+        questionList.removeAll()
         if let fileUrl = Bundle.main.url(forResource: "SpeakingTopic", withExtension: "plist"),
             let data = try? Data(contentsOf: fileUrl) {
             if let result = try! PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [[String: Any]] {
@@ -145,6 +149,12 @@ class RecordVC: UIViewController {
         case "Family, friends and pets":
             qustCd = "FFAP09"
             break
+        case "Experiences":
+            qustCd = "E10"
+            break
+        case "Others":
+            qustCd = "O11"
+            break
         default:
             break
         }
@@ -203,6 +213,11 @@ extension RecordVC:UITableViewDelegate {
             tableView.deleteRows(at: [indexPath], with: .fade)
             if ExamDB.delete(recordFilePath) {
                 print("ExamDB---刪了----- ")
+            }
+            if self.examList.count <= 0 {
+                self.openPlist()
+                self.noticeView.isHidden = false
+                self.tableView.isHidden = true
             }
             
         })
