@@ -56,8 +56,6 @@ class MenuDetailVC: UIViewController {
             setTimePickerView()
         }
         
-        
-            
         let image = #imageLiteral(resourceName: "back-1")
         let backButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(TestVC.navigationBackBtnTap))
         navigationItem.leftBarButtonItem = backButton
@@ -116,7 +114,6 @@ class MenuDetailVC: UIViewController {
 
         // 設置預設時間為上次編輯時間
         datePicker.date = timeValue
-//        datePicker.timeZone = TimeZone.init(secondsFromGMT: 0)
         datePicker.locale = Locale(identifier: "en_GB")
 
         datePicker.addTarget(self, action:#selector(datePickerChanged), for: .valueChanged)
@@ -217,7 +214,6 @@ extension MenuDetailVC:UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.title.text = "Time"
                 let formatter = DateFormatter()
-//                formatter.timeZone = TimeZone.init(secondsFromGMT: 0)
                 formatter.dateFormat = "HH:mm"
                 cell.info.text = formatter.string(from: timeValue)
                 cell.line.isHidden = true
@@ -278,9 +274,10 @@ extension MenuDetailVC:UITableViewDataSource {
                 if granted {
                     print("允許")
                     self.userDefaults.set(true, forKey: "NOTIFICATION")
+                    self.setNoitfications()
                 } else {
                     self.userDefaults.set(false, forKey: "NOTIFICATION")
-                    
+                    self.setNoitfications()
                     let alert = UIAlertController(title: "Settings -> \nIELTS Speaking Part 2 -> \nNotifications -> \nAllow Notifications", message: "", preferredStyle: .alert)
                     self.present(alert, animated: true, completion: nil)
                     
@@ -297,21 +294,34 @@ extension MenuDetailVC:UITableViewDataSource {
             
         }else {
             userDefaults.set(false, forKey: "NOTIFICATION")
+            setNoitfications()
         }
-        setNoitfications()
+        
     }
     func addNotifications(){
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["timeNotifations"])
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
 
         let date = timeValue
         let calendar = Calendar.current
         
         let hour = calendar.component(.hour, from: date)
         let minutes = calendar.component(.minute, from: date)
-        
+       
         for i in rotationValue {
-            let date = createDate(weekday: i, hour: hour, minute: minutes)
-            scheduleNotification(date: date, body: "Time to hava test!")
+        let date1 = createDate(weekday: i, hour: hour, minute: minutes)
+        scheduleNotification(date: date1, body: "Time to hava test!", identifier: "date\(i)")
+//        let date2 = createDate(weekday: 2, hour: hour, minute: minutes)
+//        scheduleNotification(date: date2, body: "Time to hava test!", identifier: "date2")
+//        let date3 = createDate(weekday: 3, hour: hour, minute: minutes)
+//        scheduleNotification(date: date3, body: "Time to hava test!", identifier: "date3")
+//        let date4 = createDate(weekday: 4, hour: hour, minute: minutes)
+//        scheduleNotification(date: date4, body: "Time to hava test!", identifier: "date4")
+//        let date5 = createDate(weekday: 5, hour: hour, minute: minutes)
+//        scheduleNotification(date: date5, body: "Time to hava test!", identifier: "date5")
+//        let date6 = createDate(weekday: 6, hour: hour, minute: minutes)
+//        scheduleNotification(date: date6, body: "Time to hava test!", identifier: "date6")
+//        let date7 = createDate(weekday: 7, hour: hour, minute: minutes)
+//        scheduleNotification(date: date7, body: "Time to hava test!", identifier: "date7")
         }
     }
     func createDate(weekday: Int, hour: Int, minute: Int)->Date{
@@ -327,17 +337,17 @@ extension MenuDetailVC:UITableViewDataSource {
         return calendar.date(from: components)!
     }
     //Schedule Notification with weekly bases.
-    func scheduleNotification(date: Date, body: String) {
+    func scheduleNotification(date: Date, body: String, identifier:String) {
         
-        let triggerWeekly = Calendar.current.dateComponents([.weekday,.hour,.minute,.second,], from: date)
-        
+        let triggerWeekly = Calendar.current.dateComponents([.weekday,.hour,.minute], from: date)
+
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerWeekly, repeats: true)
         
         let content = UNMutableNotificationContent()
         content.body = body
         content.categoryIdentifier = "todoList"
         
-        let request = UNNotificationRequest(identifier: "timeNotifations", content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
 
         UNUserNotificationCenter.current().add(request) {(error) in
             if let error = error {
@@ -350,7 +360,8 @@ extension MenuDetailVC:UITableViewDataSource {
         if switchValue {
             addNotifications()
         }else {
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["timeNotifations"])
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+//                .removePendingNotificationRequests(withIdentifiers: ["timeNotifations"])
         }
     }
 }
